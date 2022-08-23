@@ -1,0 +1,54 @@
+@prefix : <http://signalkg.visualmodel.org/demo#> .
+@prefix asset: <https://w3id.org/rec/asset/> .
+@prefix building: <https://w3id.org/rec/building/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skg: <http://signalkg.visualmodel.org/skg#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+:attacker
+  a skg:Entity ;
+  skg:prExists 0.5 ;
+  skg:performs :breakWindow ;
+.
+:breakWindow
+  a skg:Action ;
+  skg:actsOn asset:Window ;
+  skg:prOccurs 0.5 ;
+  skg:creates :soundOfBreakingGlass ;
+.
+:dropTray
+  a skg:Action ;
+  skg:actsOn building:DiningRoom ;
+  skg:prOccurs 0.1 ;
+  skg:creates :soundOfDroppedGlass ;
+.
+:employee
+  a skg:Entity ;
+  skg:prExists 0.5 ;
+  skg:performs :dropTray ;
+.
+:soundOfBreakingGlass
+  a skg:Signal ;
+  skos:broader :soundOfGlass ;
+.
+:soundOfDroppedGlass
+  a skg:Signal ;
+  skos:broader :soundOfGlass ;
+.
+:soundOfGlass
+  a skg:Signal ;
+  skos:broader :soundSignal ;
+.
+:soundSignal
+  a skg:Signal ;
+  skg:attenuatedBy building:Wall ;
+  skg:attenuatedBy asset:Window ;
+  skg:fallOff skg:inverseSquare ;
+.
+:yamNet
+  a skg:ClassifierModel ;
+  skg:sensitivity 0.9 ;
+.

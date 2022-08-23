@@ -1,0 +1,21 @@
+@prefix : <http://signalkg.visualmodel.org/demo#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix pose: <http://signalkg.visualmodel.org/pose#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix building: <https://w3id.org/rec/building/> .
+@prefix asset: <https://w3id.org/rec/asset/> .
+
+:diningRoom1
+    a building:DiningRoom ;
+    pose:x 3.0 ;
+    pose:y -3.0 ;
+    pose:z 0.0 .
+
+:conferenceRoom1
+    a building:ConferenceRoom ;
+    pose:x 12.0 ;
+    pose:y -3.0 ;
+    pose:z 1.0 .

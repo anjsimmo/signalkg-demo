@@ -1,0 +1,108 @@
+@prefix : <http://signalkg.visualmodel.org/demo#> .
+@prefix asset: <https://w3id.org/rec/asset/> .
+@prefix building: <https://w3id.org/rec/building/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skg: <http://signalkg.visualmodel.org/skg#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+:BackStreet
+  a owl:Class ;
+  rdfs:subClassOf owl:Thing ;
+.
+:BusyMainStreet
+  a owl:Class ;
+  rdfs:subClassOf owl:Thing ;
+.
+:Intersection
+  a owl:Class ;
+  rdfs:subClassOf owl:Thing ;
+.
+:MainStreet
+  a owl:Class ;
+  rdfs:subClassOf owl:Thing ;
+.
+:dangerousDriver
+  a skg:Entity ;
+  skg:performs :erraticDriving ;
+  skg:performs :movement ;
+  skg:prExists 0.5 ;
+.
+:chemicalDetector
+  a skg:Classifier ;
+  skg:sensitivity 0.9 ;
+.
+:chemicalPlume
+  a skg:Signal ;
+  skg:fallOff skg:inverseSquare ;
+.
+:dumpChemicals
+  a skg:Action ;
+  skg:actsOn :BusyMainStreet ;
+  skg:creates :chemicalPlume ;
+  skg:prOccurs 0.9 ;
+.
+:dumper
+  a skg:Entity ;
+  skg:performs :dumpChemicals ;
+  skg:performs :movement ;
+  skg:prExists 0.5 ;
+.
+:erraticDriving
+  a skg:Action ;
+  skg:actsOn :Intersection ;
+  skg:creates :visibleErraticDriving ;
+  skg:prOccurs 0.5 ;
+.
+:evader
+  a skg:Entity ;
+  skg:performs :evasiveMovement ;
+  skg:prExists 0.5 ;
+.
+:evasiveMovement
+  a skg:Action ;
+  skg:actsOn :BackStreet ;
+  skg:actsOn :Intersection ;
+  skg:actsOn :MainStreet ;
+  skg:creates :occupancy ;
+  skg:prOccurs 0.9 ;
+.
+:mobileNetV2
+  a skg:Classifier ;
+  skg:sensitivity 0.9 ;
+.
+:movement
+  a skg:Action ;
+  skg:actsOn :BusyMainStreet ;
+  skg:actsOn :Intersection ;
+  skg:actsOn :MainStreet ;
+  skg:creates :occupancy ;
+  skg:prOccurs 0.9 ;
+.
+:occupancy
+  a skg:Signal ;
+  skg:fallOff skg:inverseSquare ;
+.
+:safeDriver
+  a skg:Entity ;
+  skg:performs :movement ;
+  skg:prExists 0.5 ;
+.
+:vehicleDetector
+  a skg:Classifier ;
+  skg:sensitivity 0.95 ;
+.
+:visibleErraticDriving
+  a skg:Signal ;
+  skos:broader :visibleObject ;
+.
+:visibleObject
+  a skg:Signal ;
+  skg:fallOff skg:inverseLinear ;
+.
+:yamNet
+  a skg:ClassifierModel ;
+  skg:sensitivity 0.9 ;
+.

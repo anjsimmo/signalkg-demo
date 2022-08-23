@@ -1,0 +1,29 @@
+{
+"type": "FeatureCollection",
+"name": "city",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "type": "barrier", "name": "northbarrier" }, "geometry": { "type": "LineString", "coordinates": [ [ 0.060150742922841, -0.888064100590416 ], [ 79.978298416247796, -0.933731613546602 ] ] } },
+{ "type": "Feature", "properties": { "type": "barrier", "name": "southbarrier" }, "geometry": { "type": "LineString", "coordinates": [ [ -0.031184282989531, -40.710135398384338 ], [ 80.023965929203982, -40.80147042429671 ] ] } },
+{ "type": "Feature", "properties": { "type": "wall", "name": "shop1westwall" }, "geometry": { "type": "LineString", "coordinates": [ [ 0.105818255879027, -8.012196121755384 ], [ 0.014483229966655, -29.293257159337912 ] ] } },
+{ "type": "Feature", "properties": { "type": "wall", "name": "shop1northwall" }, "geometry": { "type": "LineString", "coordinates": [ [ 0.151485768835212, -7.920861095843012 ], [ 14.217079759340404, -8.012196121755384 ] ] } },
+{ "type": "Feature", "properties": { "type": "wall", "name": "shop1eastwall" }, "geometry": { "type": "LineString", "coordinates": [ [ 14.217079759340404, -7.966528608799198 ], [ 14.26274727229659, -29.293257159337912 ] ] } },
+{ "type": "Feature", "properties": { "type": "wall", "name": "shop1southwall1" }, "geometry": { "type": "LineString", "coordinates": [ [ 3.393879188724396, -29.338924672294098 ], [ -0.076851795945716, -29.338924672294098 ] ] } },
+{ "type": "Feature", "properties": { "type": "wall", "name": "shop1southwall2" }, "geometry": { "type": "LineString", "coordinates": [ [ 14.217079759340404, -29.338924672294098 ], [ 10.563678722845548, -29.293257159337912 ] ] } },
+{ "type": "Feature", "properties": { "type": "wall", "name": "cparknorthwall" }, "geometry": { "type": "LineString", "coordinates": [ [ 22.30210689724392, -7.982252771635881 ], [ 50.58590514151367, -7.982252771635881 ] ] } },
+{ "type": "Feature", "properties": { "type": "wall", "name": "cparkeastwall" }, "geometry": { "type": "LineString", "coordinates": [ [ 50.525079768945346, -7.921427399067561 ], [ 50.58590514151367, -29.392783915685243 ] ] } },
+{ "type": "Feature", "properties": { "type": "wall", "name": "cparkwestwall" }, "geometry": { "type": "LineString", "coordinates": [ [ 22.30210689724392, -7.982252771635881 ], [ 22.2412815246756, -29.331958543116919 ] ] } },
+{ "type": "Feature", "properties": { "type": "wall", "name": "cparksouthwall2" }, "geometry": { "type": "LineString", "coordinates": [ [ 50.583028398917307, -29.341895784094767 ], [ 47.430433772765205, -29.341895784094767 ] ] } },
+{ "type": "Feature", "properties": { "type": "wall", "name": "cparksouthwall1" }, "geometry": { "type": "LineString", "coordinates": [ [ 25.152098414623726, -29.34189578409476 ], [ 22.104590276010033, -29.289352540325559 ] ] } },
+{ "type": "Feature", "properties": { "type": "wall", "name": "shop2westwall" }, "geometry": { "type": "LineString", "coordinates": [ [ 58.832317670681974, -29.446982271633168 ], [ 58.884860914451181, -7.48390637610688 ] ] } },
+{ "type": "Feature", "properties": { "type": "wall", "name": "shop2northwall" }, "geometry": { "type": "LineString", "coordinates": [ [ 58.832317670681974, -7.48390637610688 ], [ 80.059788153439442, -7.43136313233768 ] ] } },
+{ "type": "Feature", "properties": { "type": "wall", "name": "shop2eastwall" }, "geometry": { "type": "LineString", "coordinates": [ [ 80.059788153439442, -7.48390637610688 ], [ 80.112331397208635, -29.499525515402368 ] ] } },
+{ "type": "Feature", "properties": { "type": "wall", "name": "shop2southwall2" }, "geometry": { "type": "LineString", "coordinates": [ [ 80.112331397208635, -29.446982271633168 ], [ 78.851293546747797, -29.446982271633168 ] ] } },
+{ "type": "Feature", "properties": { "type": "wall", "name": "shop2southwall1" }, "geometry": { "type": "LineString", "coordinates": [ [ 72.2833880755976, -29.552068759171569 ], [ 58.779774426912773, -29.499525515402368 ] ] } },
+{ "type": "Feature", "properties": { "type": "barrier", "name": "pedbarrier1" }, "geometry": { "type": "LineString", "coordinates": [ [ 14.433276685706588, -33.17755257924648 ], [ -0.38391805720827, -33.230095823015681 ] ] } },
+{ "type": "Feature", "properties": { "type": "barrier", "name": "pedbarrier2" }, "geometry": { "type": "LineString", "coordinates": [ [ 32.928498492465565, -33.387725554323289 ], [ 21.684244325856419, -33.335182310554082 ] ] } },
+{ "type": "Feature", "properties": { "type": "barrier", "name": "pedbarrier3" }, "geometry": { "type": "LineString", "coordinates": [ [ 51.055917592840132, -33.282639066784881 ], [ 47.535520260303628, -33.282639066784881 ] ] } },
+{ "type": "Feature", "properties": { "type": "barrier", "name": "pedbarrier4" }, "geometry": { "type": "LineString", "coordinates": [ [ 80.496792690217816, -33.57056800306961 ], [ 58.812279388642537, -33.57056800306961 ] ] } },
+{ "type": "Feature", "properties": { "type": "wall", "name": "cparksouthwall3" }, "geometry": { "type": "LineString", "coordinates": [ [ 33.010393805474195, -29.30558763096608 ], [ 30.03119188376046, -29.27800242798725 ] ] } }
+]
+}

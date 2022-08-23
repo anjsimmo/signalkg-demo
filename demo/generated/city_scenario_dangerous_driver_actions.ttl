@@ -1,0 +1,125 @@
+@prefix : <http://signalkg.visualmodel.org/demo#> .
+@prefix pose: <http://signalkg.visualmodel.org/pose#> .
+@prefix skg: <http://signalkg.visualmodel.org/skg#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+:concreteAction10 a skg:ConcreteAction ;
+    skg:actionCategory :erraticDriving ;
+    skg:concreteActsOn :intersection1 ;
+    skg:endState [ pose:x 20.02465258999763 ;
+            pose:y -25.99281020648835 ;
+            pose:z 0.0 ] ;
+    skg:endTime "2022-06-28T10:00:04"^^xsd:dateTime ;
+    skg:startState [ pose:x 20.053326417901367 ;
+            pose:y -35.42649958681781 ;
+            pose:z 0.0 ] ;
+    skg:startTime "2022-06-28T10:00:03"^^xsd:dateTime .
+
+:concreteAction11 a skg:ConcreteAction ;
+    skg:actionCategory :erraticDriving ;
+    skg:concreteActsOn :intersection1 ;
+    skg:endState [ pose:x 16.870531520586567 ;
+            pose:y -25.935462550680878 ;
+            pose:z 0.0 ] ;
+    skg:endTime "2022-06-28T10:00:05"^^xsd:dateTime ;
+    skg:startState [ pose:x 19.9959787620939 ;
+            pose:y -25.935462550680878 ;
+            pose:z 0.0 ] ;
+    skg:startTime "2022-06-28T10:00:04"^^xsd:dateTime .
+
+:concreteAction12 a skg:ConcreteAction ;
+    skg:actionCategory :erraticDriving ;
+    skg:concreteActsOn :intersection1 ;
+    skg:endState [ pose:x 16.870531520586567 ;
+            pose:y -37.14692926104203 ;
+            pose:z 0.0 ] ;
+    skg:endTime "2022-06-28T10:00:06"^^xsd:dateTime ;
+    skg:startState [ pose:x 16.81318386477909 ;
+            pose:y -25.935462550680878 ;
+            pose:z 0.0 ] ;
+    skg:startTime "2022-06-28T10:00:05"^^xsd:dateTime .
+
+:concreteAction13 a skg:ConcreteAction ;
+    skg:actionCategory :movement ;
+    skg:concreteActsOn :southrd2 ;
+    skg:endState [ pose:x 52.70368191885727 ;
+            pose:y -37.09245404019448 ;
+            pose:z 0.0 ] ;
+    skg:endTime "2022-06-28T10:00:08"^^xsd:dateTime ;
+    skg:startState [ pose:x 16.958329686433082 ;
+            pose:y -37.17153667787684 ;
+            pose:z 0.0 ] ;
+    skg:startTime "2022-06-28T10:00:06"^^xsd:dateTime .
+
+:concreteAction14 a skg:ConcreteAction ;
+    skg:actionCategory :movement ;
+    skg:concreteActsOn :intersection2 ;
+    skg:endState [ pose:x 58.63487974503385 ;
+            pose:y -31.59621072127085 ;
+            pose:z 0.0 ] ;
+    skg:endTime "2022-06-28T10:00:09"^^xsd:dateTime ;
+    skg:startState [ pose:x 52.782764556539625 ;
+            pose:y -37.05291272135331 ;
+            pose:z 0.0 ] ;
+    skg:startTime "2022-06-28T10:00:08"^^xsd:dateTime .
+
+:concreteAction15 a skg:ConcreteAction ;
+    skg:actionCategory :movement ;
+    skg:concreteActsOn :southrd3 ;
+    skg:endState [ pose:x 80.41766886643028 ;
+            pose:y -31.332988080572278 ;
+            pose:z 0.0 ] ;
+    skg:endTime "2022-06-28T10:00:11"^^xsd:dateTime ;
+    skg:startState [ pose:x 58.61345590543826 ;
+            pose:y -31.521280075054072 ;
+            pose:z 0.0 ] ;
+    skg:startTime "2022-06-28T10:00:09"^^xsd:dateTime .
+
+:concreteAction6 a skg:ConcreteAction ;
+    skg:actionCategory :movement ;
+    skg:concreteActsOn :southrd1 ;
+    skg:endState [ pose:x 14.751618853175714 ;
+            pose:y -35.47415828496774 ;
+            pose:z 0.0 ] ;
+    skg:endTime "2022-06-28T10:00:02"^^xsd:dateTime ;
+    skg:startState [ pose:x -0.398521879658188 ;
+            pose:y -35.64638409824348 ;
+            pose:z 0.0 ] ;
+    skg:startTime "2022-06-28T10:00:00"^^xsd:dateTime .
+
+:concreteAction7 a skg:ConcreteAction ;
+    skg:actionCategory :movement ;
+    skg:concreteActsOn :intersection1 ;
+    skg:endState [ pose:x 20.096349900154102 ;
+            pose:y -35.47415828496774 ;
+            pose:z 0.0 ] ;
+    skg:endTime "2022-06-28T10:00:03"^^xsd:dateTime ;
+    skg:startState [ pose:x 14.751618853175714 ;
+            pose:y -35.47415828496774 ;
+            pose:z 0.0 ] ;
+    skg:startTime "2022-06-28T10:00:02"^^xsd:dateTime .
+
+:concreteAction8 a skg:ConcreteAction ;
+    skg:actionCategory :movement ;
+    skg:concreteActsOn :southrd3 ;
+    skg:endState [ pose:x 75.41766886643028 ;
+            pose:y -31.332988080572278 ;
+            pose:z 0.0 ] ;
+    skg:endTime "2022-06-28T10:00:10"^^xsd:dateTime ;
+    skg:startState [ pose:x 58.61345590543826 ;
+            pose:y -31.332988080572278 ;
+            pose:z 0.0 ] ;
+    skg:startTime "2022-06-28T10:00:00"^^xsd:dateTime .
+
+:concreteAction9 a skg:ConcreteAction ;
+    skg:actionCategory :movement ;
+    skg:concreteActsOn :southrd3 ;
+    skg:endState [ pose:x 75.41766886643028 ;
+            pose:y -25.332988080572278 ;
+            pose:z 0.0 ] ;
+    skg:endTime "2022-06-28T10:00:11"^^xsd:dateTime ;
+    skg:startState [ pose:x 75.41766886643028 ;
+            pose:y -31.332988080572278 ;
+            pose:z 0.0 ] ;
+    skg:startTime "2022-06-28T10:00:10"^^xsd:dateTime .
+

@@ -1,0 +1,12 @@
+@prefix : <http://signalkg.visualmodel.org/demo#> .
+@prefix skg: <http://signalkg.visualmodel.org/skg#> .
+
+:dumper1 a skg:ConcreteEntity ;
+    skg:concretePerforms :concreteAction16,
+        :concreteAction17,
+        :concreteAction18,
+        :concreteAction19,
+        :concreteAction20,
+        :concreteAction21 ;
+    skg:entityCategory :dumper .
+

@@ -1,0 +1,14 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    { "type": "Feature", "properties": { "type": "wall", "name": "northwall1" }, "geometry": { "type": "LineString", "coordinates": [ [ 0.005578903786436, -1.062189759047623 ], [ 7.892571603814666, -1.052778073248066 ] ] } },
+    { "type": "Feature", "properties": { "type": "window", "name": "window1" }, "geometry": { "type": "LineString", "coordinates": [ [ 7.892571603814666, -1.04336638744851 ], [ 13.539583083548482, -1.04336638744851 ] ] } },
+    { "type": "Feature", "properties": { "type": "wall", "name": "northwall2" }, "geometry": { "type": "LineString", "coordinates": [ [ 13.5302240098925, -1.037684439312215 ], [ 15.001740074107508, -1.044054638724401 ] ] } },
+    { "type": "Feature", "properties": { "type": "wall", "name": "eastwall" }, "geometry": { "type": "LineString", "coordinates": [ [ 14.998185095212882, -1.035321180831597 ], [ 14.987744109389073, -6.046994376260434 ] ] } },
+    { "type": "Feature", "properties": { "type": "wall", "name": "southwall1" }, "geometry": { "type": "LineString", "coordinates": [ [ 14.987744109389078, -6.046994376260404 ], [ 6.112906159150512, -6.036553390436593 ] ] } },
+    { "type": "Feature", "properties": { "type": "wall", "name": "southwall2" }, "geometry": { "type": "LineString", "coordinates": [ [ 4.154226937583855, -6.033570251629788 ], [ 0.007663996127852, -6.023626455607111 ] ] } },
+    { "type": "Feature", "properties": { "type": "wall", "name": "westwall" }, "geometry": { "type": "LineString", "coordinates": [ [ -0.00091978283267, -6.027574134013556 ], [ -0.00091978283267, -1.058406804588503 ] ] } },
+    { "type": "Feature", "properties": { "type": "wall", "name": "innerwall1" }, "geometry": { "type": "LineString", "coordinates": [ [ 6.927039955617895, -1.050743559884916 ], [ 6.930029035355358, -1.648440278621696 ] ] } },
+    { "type": "Feature", "properties": { "type": "wall", "name": "innerwall2" }, "geometry": { "type": "LineString", "coordinates": [ [ 6.923984367296473, -5.56995868726993 ], [ 6.917873190653628, -6.034408112126266 ] ] } }
+  ]
+}

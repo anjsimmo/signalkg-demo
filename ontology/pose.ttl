@@ -1,0 +1,60 @@
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix pose: <http://signalkg.visualmodel.org/pose#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://signalkg.visualmodel.org/pose>
+  a owl:Ontology ;
+  dct:created "2022-06-13"^^xsd:date ;
+  rdfs:comment "Properties for concisely representing relative position, orientation, and shape. Inspired by SDFormat (Simulation Description Format) <http://sdformat.org/tutorials?tut=specify_pose>"@en ;
+  rdfs:label "Pose Ontology" ;
+.
+pose:x
+  a owl:DatatypeProperty ;
+  rdfs:comment "Position in x-axis (in metres)" ;
+  rdfs:range xsd:decimal ;
+.
+pose:y
+  a owl:DatatypeProperty ;
+  rdfs:comment "Position in y-axis (in metres)" ;
+  rdfs:range xsd:decimal ;
+.
+pose:z
+  a owl:DatatypeProperty ;
+  rdfs:comment "Position in z-axis (in metres)" ;
+  rdfs:range xsd:decimal ;
+.
+pose:roll
+  a owl:DatatypeProperty ;
+  rdfs:comment "Roll about the x-axis (in radians)" ;
+  rdfs:range xsd:decimal ;
+.
+pose:pitch
+  a owl:DatatypeProperty ;
+  rdfs:comment "Pitch about the y-axis (in radians)" ;
+  rdfs:range xsd:decimal ;
+.
+pose:yaw
+  a owl:DatatypeProperty ;
+  rdfs:comment "Yaw about the z-axis (in radians)" ;
+  rdfs:range xsd:decimal ;
+.
+pose:thickness
+  a owl:DatatypeProperty ;
+  rdfs:comment "Thickness in the x-axis (in metres)" ;
+  rdfs:range xsd:decimal ;
+.
+pose:width
+  a owl:DatatypeProperty ;
+  rdfs:comment "Width in the y-axis (in metres)" ;
+  rdfs:range xsd:decimal ;
+.
+pose:height
+  a owl:DatatypeProperty ;
+  rdfs:comment "Height in the z-axis (in metres)" ;
+  rdfs:range xsd:decimal ;
+.
+

@@ -1,0 +1,33 @@
+@prefix : <http://signalkg.visualmodel.org/demo#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix pose: <http://signalkg.visualmodel.org/pose#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skg: <http://signalkg.visualmodel.org/skg#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix ssn: <http://www.w3.org/ns/ssn/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+:mic1 a sosa:Sensor;
+    ssn:implements :yamNet ;
+    sosa:observes :soundOfGlass ;
+    pose:x 13.0 ;
+    pose:y -3.0 ;
+    pose:z 1.0 ;
+    pose:pitch -1.570796 ;
+    pose:roll 0.0 ;
+    pose:yaw 0.0 ;
+    skg:reliableDistance 5.0 .
+
+:cam1 a sosa:Sensor ;
+    ssn:implements :mobileNetV2 ;
+    sosa:observes :visibleKnife ;
+    pose:x 13.0 ;
+    pose:y -4.0 ;
+    pose:z 1.0 ;
+    pose:pitch 0.0 ;
+    pose:roll 0.0 ;
+    pose:yaw 3.141592 ;
+    skg:reliableDistance 5.0 ;
+    skg:fov 1.0 .

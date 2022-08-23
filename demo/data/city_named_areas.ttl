@@ -1,0 +1,57 @@
+@prefix : <http://signalkg.visualmodel.org/demo#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix pose: <http://signalkg.visualmodel.org/pose#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix building: <https://w3id.org/rec/building/> .
+@prefix asset: <https://w3id.org/rec/asset/> .
+
+:southrd1
+    a :MainStreet ;
+    pose:x 0.0 ;
+    pose:y -37.0 ;
+    pose:z 0.0 .
+
+:southrd2
+    a :BusyMainStreet ;
+    pose:x 37.7 ;
+    pose:y -37.0 ;
+    pose:z 0.0 .
+
+:southrd3
+    a :MainStreet ;
+    pose:x 77.2 ;
+    pose:y -37.0 ;
+    pose:z 0.0 .
+
+:westrd
+    a :BackStreet ;
+    pose:x 17.9 ;
+    pose:y -18.8 ;
+    pose:z 0.0 .
+
+:northrd
+    a :BackStreet ;
+    pose:x 35.8 ;
+    pose:y -3.8 ;
+    pose:z 0.0 .
+
+:eastrd
+    a :BackStreet ;
+    pose:x 55.0 ;
+    pose:y -19.3 ;
+    pose:z 0.0 .
+
+:intersection1
+    a :Intersection ;
+    pose:x 18.2 ;
+    pose:y -37.0 ;
+    pose:z 0.0 .
+
+:intersection2
+    a :Intersection ;
+    pose:x 55.8 ;
+    pose:y -37.0 ;
+    pose:z 0.0 .

@@ -1,0 +1,4 @@
+@prefix : <http://signalkg.visualmodel.org/demo#> .
+@prefix pose: <http://signalkg.visualmodel.org/pose#> .
+@prefix skg: <http://signalkg.visualmodel.org/skg#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .

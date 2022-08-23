@@ -1,0 +1,2552 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title>
+   SignalKG Ontology
+  </title>
+  <style>
+   #pylode {
+            position: fixed;
+            top: 130px;
+            left: -80px;
+            font-size: small;
+            transform: rotate(-90deg);
+            color: grey;
+        }
+        #pylode a {
+            font-size: 2em;
+            font-weight: bold;
+            text-decoration: none;
+            color: #005A9C;
+        }
+        #pylode a:hover {
+            color: #333;
+        }
+        #pylode #p {
+            color: #329545;
+        }
+        #pylode #y {
+            color: #f9cb33;
+        }
+        #pylode #version {
+            font-size: 1.0em;
+        }
+
+        .cardinality {
+            font-style: italic;
+            color: #aa00aa;
+        }
+
+        dl {
+            /*border: 1px solid navy;*/
+            /*padding:5px;*/
+        }
+
+        dt {
+            font-weight: bold;
+            padding: 0;
+        }
+
+        dd {
+            margin-bottom: 10px;
+            padding-top: 7px;
+        }
+
+        #metadata ul,
+        #classes ul {
+            list-style-type: none;
+        }
+
+        #metadata ul li,
+        #classes ul li {
+            margin-left: -40px;
+        }
+
+        ul.hlist {
+            list-style-type: none;
+            border: 1px solid navy;
+            padding:5px;
+            background-color: #F4FFFF;
+        }
+
+        ul.hierarchy {
+            border: 1px solid navy;
+            padding: 5px 25px 5px 25px;
+            background-color: #F4FFFF;
+        }
+
+
+        ul.hlist li {
+            display: inline;
+            margin-right: 10px;
+        }
+
+        .entity {
+            border: 1px solid navy;
+            margin:5px 0 5px 0;
+            padding: 5px;
+        }
+
+        .entity th {
+            width: 150px;
+            vertical-align: top;
+        }
+
+        .entity th,
+        .entity td {
+            padding-bottom: 20px;
+        }
+
+        .entity table th {
+            text-align: left;
+        }
+
+        section#overview img {
+            max-width: 1000px;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            text-align: left
+        }
+        h1, h2, h3 {
+            color: #005A9C; background: white
+        }
+        h1 {
+            font: 170% sans-serif;
+            line-height: 110%;
+        }
+        h2 {
+            font: 140% sans-serif;
+            margin-top:40px;
+        }
+        h3 {
+            font: 120% sans-serif;
+            margin-top: 20px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid navy;
+        }
+        h4 { font: bold 100% sans-serif }
+        h5 { font: italic 100% sans-serif }
+        h6 { font: small-caps 100% sans-serif }
+
+        body {
+            padding: 2em 70px 2em 70px;
+            margin: 0;
+            font-family: sans-serif;
+            color: black;
+            background: white;
+            background-position: top left;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            text-align: justify;
+        }
+
+        section {
+            max-width: 1500px;
+        }
+
+        .figure {
+            margin-bottom: 20px;
+        }
+
+        :link { color: #00C; background: transparent }
+        :visited { color: #609; background: transparent }
+        a:active { color: #C00; background: transparent }
+
+        .sup-c,
+        .sup-op,
+        .sup-fp,
+        .sup-dp,
+        .sup-ap,
+        .sup-p,
+        .sup-ni,
+        .sup-con,
+        .sup-col {
+            cursor:help;
+        }
+
+        .sup-c {
+            color:orange;
+        }
+
+        .sup-op {
+            color:navy;
+        }
+
+        .sup-fp {
+            color:lightskyblue;
+        }
+
+        .sup-dp {
+            color:green;
+        }
+
+        .sup-ap {
+            color:darkred;
+        }
+
+        .sup-p {
+            color:black;
+        }
+
+        .sup-ni {
+            color:brown;
+        }
+
+        .sup-con {
+            color:orange;
+        }
+
+        .sup-col {
+            color:darkred;
+        }
+
+        sup {
+            margin-left: -3px;
+        }
+        code {
+            font-size: large;
+            color: darkred;
+        }
+
+        /* less prominent links for properties */
+        .proplink {
+            color: #336;
+            text-decoration: none;
+        }
+
+#toc {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 2;
+    height: 100%;
+    overflow-y: auto;
+    padding: 10px;
+    border: solid 1px navy;
+    font-size: small;
+    width: 180px;
+}
+#toc h3 {
+    margin-top: 5px;
+}
+
+#toc ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+#toc .first > li {
+    margin-top: 5px;
+}
+
+#toc .second,
+#toc .third {
+    padding-left: 10px;
+}
+
+#content {
+    width: calc(100% - 150px);
+}
+
+.hover_property {
+    cursor: help;
+    text-decoration: none;
+    border-bottom: dashed 1px;
+}
+
+.setclass {
+    list-style-type: none;
+}
+
+code{
+    word-wrap: break-word;
+  }
+  table {
+    table-layout: fixed;
+    width: 100%;
+  }
+  td {
+    word-wrap: break-word;
+  }
+  </style>
+  <link href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABhklEQVQ4jbWPzStEURjG3yQLirlGKUnKFO45Z+SjmXvnnmthQcpCoVhYmD/AwmJiI3OvZuZc2U3UlKU0/gAslMw9JgvhHxAr2fko7r0jHSsl+TgbTz2Lt5731/MASEiJW9ONml2QyX6rsGalmnT74v8BDf12hxJfpV8d1uwNKUBYszabdFv84L8B9X0rESVmmUup2fme0cVhJWaZHw4NWL1SewEAfDe6H3Dy6Ll456WEJsRZS630MwCAOI20ei5OBpxse5zcBZw8eS4uPpfIuDiCainIg9umBCU0GZzgLZ9Hn31OgoATL+CkLDGB5H1OKj4nFd/FBxUXJ0UZNb4edw/6nLyJXaj5FeCVyPLNIVmYK8TG1IwWb16L1gEACAFV90ftoT8bdOX0EeyY99gxBXZMgRz6qGb1KantAACI0UvE6F5XJqEjpsdURouI0Vt5gGOUkUNnPu7ObGIIMfNaGqDmjDRi9FZldF1lRgYzeqUyeoiY4ag5Iy3RgOYRM8+/M2bG8efsO4hGrpmJseyMAAAAAElFTkSuQmCC" rel="icon" sizes="16x16" type="image/png"/>
+  <link href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAC40lEQVRYhe2UT0hUQRzHp6Iss1B3VZKIDbbdfW9mnoi4f3zzjkJQeOgS0SEIb1EWBGGlLLu460zQPQM1unUIIjA6rfpm6ZAhHjoIRVQUFUlEbG+euTsdXG1d3VL3bVD4g+9h+L35fT/8fvN7ADgY9aHY5fpIvK82HO9ysu66wxWOzbkjcekKx0a2ALYA/n2AGi3a6ArFezcidziecQygNhhrcUficjP6PwBqtGijKxy/thnVBePHywYoDsFhl53GV8SEcsTx4usCMLUewTVpc23BNvEzm6Neyf1+KcG2vwqwUjgrOJq2JmHftwmkVBRGTvncFodnbI7vChO/FRznCmHsNM7aHM9Yk7Df5iqsLMw9sMNOK2g+jS4IEz0UJv4iuJZb2RltWnB4UZqH6ioGAgAAGe5vtiZhtzDx7OoRadLmeM7m6IRjhnLMW2Vx1bA5GhAmnhIcz6/xNj4Ujsky8UspwfayjDPjsF2Y6L7N8Vzx/BfP+KPg6LbgSqd8DnfJW2CnbaLhfH5ephpqygJYvQU4Z3P82TLRsDDhUTnmrSq+Y3N0Mg+Xldy/zwEAnLMWZ3pHpNExmfLs/t0dOdVcbT0JeKxUwFP2VljjqiE47Jp53LTXNxhsUZjerTByXWX6VZWRs/4bIQ2ACv+UAomgDzLCISNZxAxZKMhIDjLy1JfsaK+I+eGBUBNk5E2x8RogX/PdcDZUqieWTSh5D6nOVKqfhoycUmlHFFIyu5RXqf7AcQDISCpv/tqbMBqK883RtmpISRoxQyJKPgGn3wNk5NEigDFa6hslqV/Kj+FdBQD0bshIDlKSLlVcoWQo36UhR80BAMB73lulMn0EMpJTqD6qJiOt3mho/8GbkT2BZNgDB/V+RI0fkOrT3kRIVQbaDizJm2hdNbINBxwk5xAj3yEjuV9rZ1iIkgxixkLBA83mz8uCjLwoGwAx0vOnFSy5mtR4VTaAQvVORMnwZgSpzkrV/QmdE2tKe46+MQAAAABJRU5ErkJggg==" rel="icon" sizes="32x32" type="image/png"/>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+  <script id="schema.org" type="application/ld+json">
+   [
+  {
+    "@id": "http://signalkg.visualmodel.org/skg",
+    "@type": [
+      "https://schema.org/DefinedTermSet"
+    ],
+    "https://schema.org/dateCreated": [
+      {
+        "@type": "http://www.w3.org/2001/XMLSchema#date",
+        "@value": "2022-06-13"
+      }
+    ],
+    "https://schema.org/description": [
+      {
+        "@language": "en",
+        "@value": "An ontology describing the high level concepts needed to construct a knowledge graph for reasoning about the underlying causes of sensor observations"
+      }
+    ],
+    "https://schema.org/name": [
+      {
+        "@value": "SignalKG Ontology"
+      }
+    ]
+  }
+]
+  </script>
+ </head>
+ <body>
+  <div id="content">
+   <div class="section" id="metadata">
+    <h1>
+     SignalKG Ontology
+    </h1>
+    <h2>
+     Metadata
+    </h2>
+    <dl>
+     <div>
+      <dt>
+       <strong>
+        IRI
+       </strong>
+      </dt>
+      <dd>
+       <code>
+        http://signalkg.visualmodel.org/skg
+       </code>
+      </dd>
+     </div>
+     <div>
+      <dt>
+       <a class="hover_property" href="http://purl.org/dc/terms/title" title="A name given to the resource. Defined in DCMI Metadata Terms">
+        Title
+       </a>
+      </dt>
+      <dd>
+       <p>
+        SignalKG Ontology
+       </p>
+      </dd>
+     </div>
+     <div>
+      <dt>
+       <a class="hover_property" href="http://purl.org/dc/terms/created" title="Date of creation of the resource. Defined in DCMI Metadata Terms">
+        Date Created
+       </a>
+      </dt>
+      <dd>
+       <p>
+        2022-06-13
+       </p>
+      </dd>
+     </div>
+     <div>
+      <dt>
+       <a class="hover_property" href="http://purl.org/dc/terms/description" title="An account of the resource. Defined in DCMI Metadata Terms">
+        Description
+       </a>
+      </dt>
+      <dd>
+       <p>
+        An ontology describing the high level concepts needed to construct a knowledge graph for reasoning about the underlying causes of sensor observations
+       </p>
+      </dd>
+     </div>
+     <div>
+      <dt>
+       Ontology RDF
+      </dt>
+      <dd>
+       <a href="../skg.ttl">
+        RDF (turtle)
+       </a>
+      </dd>
+     </div>
+    </dl>
+   </div>
+   <div class="section" id="classes">
+    <h2>
+     Classes
+    </h2>
+    <div class="property entity" id="Action">
+     <h3>
+      Action
+      <sup class="sup-c" title="OWL/RDFS Class">
+       c
+      </sup>
+     </h3>
+     <table>
+      <tr>
+       <th>
+        IRI
+       </th>
+       <td>
+        <code>
+         http://signalkg.visualmodel.org/skg#Action
+        </code>
+       </td>
+      </tr>
+      <tr>
+       <th>
+        <a class="hover_property" href="http://purl.org/dc/terms/description" title="An account of the resource. Defined in DCMI Metadata Terms">
+         Description
+        </a>
+       </th>
+       <td>
+        <p>
+         An Action that can be performed by an Entity (e.g., break window)
+        </p>
+       </td>
+      </tr>
+      <tr>
+       <th>
+        <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#subClassOf" title="The subject is a subclass of a class. Defined in The RDF Schema vocabulary (RDFS)">
+         Sub Class Of
+        </a>
+       </th>
+       <td>
+        <span>
+         <a href="http://www.w3.org/2002/07/owl#Thing">
+          owl:Thing
+         </a>
+         <sup class="sup-c" title="OWL/RDFS Class">
+          c
+         </sup>
+        </span>
+       </td>
+      </tr>
+      <tr>
+       <th>
+        <a class="hover_property" href="https://w3id.org/profile/ontdoc/inDomainOf" title="Inverse of rdfs:domain. Defined in Ontology Documentation Profile">
+         In Domain Of
+        </a>
+       </th>
+       <td>
+        <ul>
+         <li>
+          <span>
+           <a href="#actsOn">
+            skg:actsOn
+           </a>
+           <sup class="sup-dp" title="OWL Datatype Property">
+            dp
+           </sup>
+          </span>
+         </li>
+         <li>
+          <span>
+           <a href="#creates">
+            skg:creates
+           </a>
+           <sup class="sup-op" title="OWL Object Property">
+            op
+           </sup>
+          </span>
+         </li>
+         <li>
+          <span>
+           <a href="#prOccurs">
+            skg:prOccurs
+           </a>
+           <sup class="sup-dp" title="OWL Datatype Property">
+            dp
+           </sup>
+          </span>
+         </li>
+        </ul>
+       </td>
+      </tr>
+      <tr>
+       <th>
+        <a class="hover_property" href="https://w3id.org/profile/ontdoc/inRangeOf" title="Inverse of rdfs:range. Defined in Ontology Documentation Profile">
+         In Range Of
+        </a>
+       </th>
+       <td>
+        <ul>
+         <li>
+          <span>
+           <a href="#actionCategory">
+            skg:actionCategory
+           </a>
+           <sup class="sup-op" title="OWL Object Property">
+            op
+           </sup>
+          </span>
+         </li>
+         <li>
+          <span>
+           <a href="#performs">
+            skg:performs
+           </a>
+           <sup class="sup-op" title="OWL Object Property">
+            op
+           </sup>
+          </span>
+         </li>
+        </ul>
+       </td>
+      </tr>
+     </table>
+    </div>
+    <div class="property entity" id="Classifier">
+     <h3>
+      Classifier
+      <sup class="sup-c" title="OWL/RDFS Class">
+       c
+      </sup>
+     </h3>
+     <table>
+      <tr>
+       <th>
+        IRI
+       </th>
+       <td>
+        <code>
+         http://signalkg.visualmodel.org/skg#Classifier
+        </code>
+       </td>
+      </tr>
+      <tr>
+       <th>
+        <a class="hover_property" href="http://purl.org/dc/terms/description" title="An account of the resource. Defined in DCMI Metadata Terms">
+         Description
+        </a>
+       </th>
+       <td>
+        <p>
+         A procedure or machine learning model for detecting the presence of a signal
+        </p>
+       </td>
+      </tr>
+      <tr>
+       <th>
+        <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#subClassOf" title="The subject is a subclass of a class. Defined in The RDF Schema vocabulary (RDFS)">
+         Sub Class Of
+        </a>
+       </th>
+       <td>
+        <span>
+         <a href="http://www.w3.org/2002/07/owl#Thing">
+          owl:Thing
+         </a>
+         <sup class="sup-c" title="OWL/RDFS Class">
+          c
+         </sup>
+        </span>
+       </td>
+      </tr>
+      <tr>
+       <th>
+        <a class="hover_property" href="https://w3id.org/profile/ontdoc/inDomainOf" title="Inverse of rdfs:domain. Defined in Ontology Documentation Profile">
+         In Domain Of
+        </a>
+       </th>
+       <td>
+        <span>
+         <a href="#sensitivity">
+          skg:sensitivity
+         </a>
+         <sup class="sup-dp" title="OWL Datatype Property">
+          dp
+         </sup>
+        </span>
+       </td>
+      </tr>
+     </table>
+    </div>
+    <div class="property entity" id="ConcreteAction">
+     <h3>
+      Concrete Action
+      <sup class="sup-c" title="OWL/RDFS Class">
+       c
+      </sup>
+     </h3>
+     <table>
+      <tr>
+       <th>
+        IRI
+       </th>
+       <td>
+        <code>
+         http://signalkg.visualmodel.org/skg#ConcreteAction
+        </code>
+       </td>
+      </tr>
+      <tr>
+       <th>
+        <a class="hover_property" href="http://purl.org/dc/terms/description" title="An account of the resource. Defined in DCMI Metadata Terms">
+         Description
+        </a>
+       </th>
+       <td>
+        <p>
+         A concrete realisation/occurrence of an Action (e.g., breaking a particular window at a particular time)
+        </p>
+       </td>
+      </tr>
+      <tr>
+       <th>
+        <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#subClassOf" title="The subject is a subclass of a class. Defined in The RDF Schema vocabulary (RDFS)">
+         Sub Class Of
+        </a>
+       </th>
+       <td>
+        <span>
+         <a href="http://www.w3.org/2002/07/owl#Thing">
+          owl:Thing
+         </a>
+         <sup class="sup-c" title="OWL/RDFS Class">
+          c
+         </sup>
+        </span>
+       </td>
+      </tr>
+      <tr>
+       <th>
+        <a class="hover_property" href="https://w3id.org/profile/ontdoc/inDomainOf" title="Inverse of rdfs:domain. Defined in Ontology Documentation Profile">
+         In Domain Of
+        </a>
+       </th>
+       <td>
+        <ul>
+         <li>
+          <span>
+           <a href="#actionCategory">
+            skg:actionCategory
+           </a>
+           <sup class="sup-op" title="OWL Object Property">
+            op
+           </sup>
+          </span>
+         </li>
+         <li>
+          <span>
+           <a href="#concreteActsOn">
+            skg:concreteActsOn
+           </a>
+           <sup class="sup-op" title="OWL Object Property">
+            op
+           </sup>
+          </span>
+         </li>
+         <li>
+          <span>
+           <a href="#endState">
+            skg:endState
+           </a>
+           <sup class="sup-op" title="OWL Object Property">
+            op
+           </sup>
+          </span>
+         </li>
+         <li>
+          <span>
+           <a href="#endTime">
+            skg:endTime
+           </a>
+           <sup class="sup-dp" title="OWL Datatype Property">
+            dp
+           </sup>
+          </span>
+         </li>
+         <li>
+          <span>
+           <a href="#startState">
+            skg:startState
+           </a>
+           <sup class="sup-op" title="OWL Object Property">
+            op
+           </sup>
+          </span>
+         </li>
+         <li>
+          <span>
+           <a href="#startTime">
+            skg:startTime
+           </a>
+           <sup class="sup-dp" title="OWL Datatype Property">
+            dp
+           </sup>
+          </span>
+         </li>
+        </ul>
+       </td>
+      </tr>
+      <tr>
+       <th>
+        <a class="hover_property" href="https://w3id.org/profile/ontdoc/inRangeOf" title="Inverse of rdfs:range. Defined in Ontology Documentation Profile">
+         In Range Of
+        </a>
+       </th>
+       <td>
+        <span>
+         <a href="#concreteProduces">
+          skg:concreteProduces
+         </a>
+         <sup class="sup-op" title="OWL Object Property">
+          op
+         </sup>
+        </span>
+       </td>
+      </tr>
+     </table>
+    </div>
+    <div class="property entity" id="ConcreteEntity">
+     <h3>
+      Concrete Entity
+      <sup class="sup-c" title="OWL/RDFS Class">
+       c
+      </sup>
+     </h3>
+     <table>
+      <tr>
+       <th>
+        IRI
+       </th>
+       <td>
+        <code>
+         http://signalkg.visualmodel.org/skg#ConcreteEntity
+        </code>
+       </td>
+      </tr>
+      <tr>
+       <th>
+        <a class="hover_property" href="http://purl.org/dc/terms/description" title="An account of the resource. Defined in DCMI Metadata Terms">
+         Description
+        </a>
+       </th>
+       <td>
+        <p>
+         A concrete realisation/occurrence of an Entity (e.g., a particular person)
+        </p>
+       </td>
+      </tr>
+      <tr>
+       <th>
+        <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#subClassOf" title="The subject is a subclass of a class. Defined in The RDF Schema vocabulary (RDFS)">
+         Sub Class Of
+        </a>
+       </th>
+       <td>
+        <span>
+         <a href="http://www.w3.org/2002/07/owl#Thing">
+          owl:Thing
+         </a>
+         <sup class="sup-c" title="OWL/RDFS Class">
+          c
+         </sup>
+        </span>
+       </td>
+      </tr>
+      <tr>
+       <th>
+        <a class="hover_property" href="https://w3id.org/profile/ontdoc/inDomainOf" title="Inverse of rdfs:domain. Defined in Ontology Documentation Profile">
+         In Domain Of
+        </a>
+       </th>
+       <td>
+        <ul>
+         <li>
+          <span>
+           <a href="#concreteProduces">
+            skg:concreteProduces
+           </a>
+           <sup class="sup-op" title="OWL Object Property">
+            op
+           </sup>
+          </span>
+         </li>
+         <li>
+          <span>
+           <a href="#entityCategory">
+            skg:entityCategory
+           </a>
+           <sup class="sup-op" title="OWL Object Property">
+            op
+           </sup>
+          </span>
+         </li>
+        </ul>
+       </td>
+      </tr>
+     </table>
+    </div>
+    <div class="property entity" id="Entity">
+     <h3>
+      Entity
+      <sup class="sup-c" title="OWL/RDFS Class">
+       c
+      </sup>
+     </h3>
+     <table>
+      <tr>
+       <th>
+        IRI
+       </th>
+       <td>
+        <code>
+         http://signalkg.visualmodel.org/skg#Entity
+        </code>
+       </td>
+      </tr>
+      <tr>
+       <th>
+        <a class="hover_property" href="http://purl.org/dc/terms/description" title="An account of the resource. Defined in DCMI Metadata Terms">
+         Description
+        </a>
+       </th>
+       <td>
+        <p>
+         An Entity capable of performing some Action (e.g., humans)
+        </p>
+       </td>
+      </tr>
+      <tr>
+       <th>
+        <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#subClassOf" title="The subject is a subclass of a class. Defined in The RDF Schema vocabulary (RDFS)">
+         Sub Class Of
+        </a>
+       </th>
+       <td>
+        <span>
+         <a href="http://www.w3.org/2002/07/owl#Thing">
+          owl:Thing
+         </a>
+         <sup class="sup-c" title="OWL/RDFS Class">
+          c
+         </sup>
+        </span>
+       </td>
+      </tr>
+      <tr>
+       <th>
+        <a class="hover_property" href="https://w3id.org/profile/ontdoc/inDomainOf" title="Inverse of rdfs:domain. Defined in Ontology Documentation Profile">
+         In Domain Of
+        </a>
+       </th>
+       <td>
+        <ul>
+         <li>
+          <span>
+           <a href="#performs">
+            skg:performs
+           </a>
+           <sup class="sup-op" title="OWL Object Property">
+            op
+           </sup>
+          </span>
+         </li>
+         <li>
+          <span>
+           <a href="#prExists">
+            skg:prExists
+           </a>
+           <sup class="sup-dp" title="OWL Datatype Property">
+            dp
+           </sup>
+          </span>
+         </li>
+        </ul>
+       </td>
+      </tr>
+      <tr>
+       <th>
+        <a class="hover_property" href="https://w3id.org/profile/ontdoc/inRangeOf" title="Inverse of rdfs:range. Defined in Ontology Documentation Profile">
+         In Range Of
+        </a>
+       </th>
+       <td>
+        <span>
+         <a href="#entityCategory">
+          skg:entityCategory
+         </a>
+         <sup class="sup-op" title="OWL Object Property">
+          op
+         </sup>
+        </span>
+       </td>
+      </tr>
+     </table>
+    </div>
+    <div class="property entity" id="FallOff">
+     <h3>
+      Fall Off
+      <sup class="sup-c" title="OWL/RDFS Class">
+       c
+      </sup>
+     </h3>
+     <table>
+      <tr>
+       <th>
+        IRI
+       </th>
+       <td>
+        <code>
+         http://signalkg.visualmodel.org/skg#FallOff
+        </code>
+       </td>
+      </tr>
+      <tr>
+       <th>
+        <a class="hover_property" href="http://purl.org/dc/terms/description" title="An account of the resource. Defined in DCMI Metadata Terms">
+         Description
+        </a>
+       </th>
+       <td>
+        <p>
+         Falloff of signal strength as a function of distance (e.g., an inverse square law)
+        </p>
+       </td>
+      </tr>
+      <tr>
+       <th>
+        <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#subClassOf" title="The subject is a subclass of a class. Defined in The RDF Schema vocabulary (RDFS)">
+         Sub Class Of
+        </a>
+       </th>
+       <td>
+        <span>
+         <a href="http://www.w3.org/2002/07/owl#Thing">
+          owl:Thing
+         </a>
+         <sup class="sup-c" title="OWL/RDFS Class">
+          c
+         </sup>
+        </span>
+       </td>
+      </tr>
+      <tr>
+       <th>
+        <a class="hover_property" href="https://w3id.org/profile/ontdoc/inRangeOf" title="Inverse of rdfs:range. Defined in Ontology Documentation Profile">
+         In Range Of
+        </a>
+       </th>
+       <td>
+        <span>
+         <a href="#fallOff">
+          skg:fallOff
+         </a>
+         <sup class="sup-op" title="OWL Object Property">
+          op
+         </sup>
+        </span>
+       </td>
+      </tr>
+     </table>
+    </div>
+    <div class="property entity" id="Signal">
+     <h3>
+      Signal
+      <sup class="sup-c" title="OWL/RDFS Class">
+       c
+      </sup>
+     </h3>
+     <table>
+      <tr>
+       <th>
+        IRI
+       </th>
+       <td>
+        <code>
+         http://signalkg.visualmodel.org/skg#Signal
+        </code>
+       </td>
+      </tr>
+      <tr>
+       <th>
+        <a class="hover_property" href="http://purl.org/dc/terms/description" title="An account of the resource. Defined in DCMI Metadata Terms">
+         Description
+        </a>
+       </th>
+       <td>
+        <p>
+         A Signal category (audio, vision, social, etc.) or sub-category (e.g., the sound of footsteps) that is created by some Action and is observable by some Sensor
+        </p>
+       </td>
+      </tr>
+      <tr>
+       <th>
+        <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#subClassOf" title="The subject is a subclass of a class. Defined in The RDF Schema vocabulary (RDFS)">
+         Sub Class Of
+        </a>
+       </th>
+       <td>
+        <span>
+         <a href="http://www.w3.org/2004/02/skos/core#Concept">
+          skos:Concept
+         </a>
+         <sup class="sup-c" title="OWL/RDFS Class">
+          c
+         </sup>
+        </span>
+       </td>
+      </tr>
+      <tr>
+       <th>
+        <a class="hover_property" href="https://w3id.org/profile/ontdoc/inDomainOf" title="Inverse of rdfs:domain. Defined in Ontology Documentation Profile">
+         In Domain Of
+        </a>
+       </th>
+       <td>
+        <ul>
+         <li>
+          <span>
+           <a href="#attenuatedBy">
+            skg:attenuatedBy
+           </a>
+           <sup class="sup-dp" title="OWL Datatype Property">
+            dp
+           </sup>
+          </span>
+         </li>
+         <li>
+          <span>
+           <a href="#fallOff">
+            skg:fallOff
+           </a>
+           <sup class="sup-op" title="OWL Object Property">
+            op
+           </sup>
+          </span>
+         </li>
+        </ul>
+       </td>
+      </tr>
+      <tr>
+       <th>
+        <a class="hover_property" href="https://w3id.org/profile/ontdoc/inRangeOf" title="Inverse of rdfs:range. Defined in Ontology Documentation Profile">
+         In Range Of
+        </a>
+       </th>
+       <td>
+        <span>
+         <a href="#creates">
+          skg:creates
+         </a>
+         <sup class="sup-op" title="OWL Object Property">
+          op
+         </sup>
+        </span>
+       </td>
+      </tr>
+     </table>
+    </div>
+   </div>
+   <div class="section" id="objectproperties">
+    <h2>
+     Object Properties
+    </h2>
+    <div class="property entity" id="actionCategory">
+     <h3>
+      action category
+      <sup class="sup-op" title="OWL Object Property">
+       op
+      </sup>
+     </h3>
+     <table>
+      <tr>
+       <th>
+        IRI
+       </th>
+       <td>
+        <code>
+         http://signalkg.visualmodel.org/skg#actionCategory
+        </code>
+       </td>
+      </tr>
+      <tr>
+       <th>
+        <a class="hover_property" href="http://purl.org/dc/terms/description" title="An account of the resource. Defined in DCMI Metadata Terms">
+         Description
+        </a>
+       </th>
+       <td>
+        <p>
+         A category of Action that a ConcreteAction is a realisation/occurrence of
+        </p>
+       </td>
+      </tr>
+      <tr>
+       <th>
+        <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#domain" title="A domain of the subject property. Defined in The RDF Schema vocabulary (RDFS)">
+         Domain
+        </a>
+       </th>
+       <td>
+        <span>
+         <a href="#ConcreteAction">
+          skg:ConcreteAction
+         </a>
+         <sup class="sup-c" title="OWL/RDFS Class">
+          c
+         </sup>
+        </span>
+       </td>
+      </tr>
+      <tr>
+       <th>
+        <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#range" title="A range of the subject property. Defined in The RDF Schema vocabulary (RDFS)">
+         Range
+        </a>
+       </th>
+       <td>
+        <span>
+         <a href="#Action">
+          skg:Action
+         </a>
+         <sup class="sup-c" title="OWL/RDFS Class">
+          c
+         </sup>
+        </span>
+       </td>
+      </tr>
+     </table>
+    </div>
+    <div class="property entity" id="concreteActsOn">
+     <h3>
+      concrete acts on
+      <sup class="sup-op" title="OWL Object Property">
+       op
+      </sup>
+     </h3>
+     <table>
+      <tr>
+       <th>
+        IRI
+       </th>
+       <td>
+        <code>
+         http://signalkg.visualmodel.org/skg#concreteActsOn
+        </code>
+       </td>
+      </tr>
+      <tr>
+       <th>
+        <a class="hover_property" href="http://purl.org/dc/terms/description" title="An account of the resource. Defined in DCMI Metadata Terms">
+         Description
+        </a>
+       </th>
+       <td>
+        <p>
+         A particular object/place that a ConcreteAction is performed on/in (e.g., a particular window)
+        </p>
+       </td>
+      </tr>
+      <tr>
+       <th>
+        <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#domain" title="A domain of the subject property. Defined in The RDF Schema vocabulary (RDFS)">
+         Domain
+        </a>
+       </th>
+       <td>
+        <span>
+         <a href="#ConcreteAction">
+          skg:ConcreteAction
+         </a>
+         <sup class="sup-c" title="OWL/RDFS Class">
+          c
+         </sup>
+        </span>
+       </td>
+      </tr>
+      <tr>
+       <th>
+        <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#range" title="A range of the subject property. Defined in The RDF Schema vocabulary (RDFS)">
+         Range
+        </a>
+       </th>
+       <td>
+        <span>
+         <a href="http://www.w3.org/2002/07/owl#Thing">
+          owl:Thing
+         </a>
+         <sup class="sup-c" title="OWL/RDFS Class">
+          c
+         </sup>
+        </span>
+       </td>
+      </tr>
+     </table>
+    </div>
+    <div class="property entity" id="concreteProduces">
+     <h3>
+      concrete produces
+      <sup class="sup-op" title="OWL Object Property">
+       op
+      </sup>
+     </h3>
+     <table>
+      <tr>
+       <th>
+        IRI
+       </th>
+       <td>
+        <code>
+         http://signalkg.visualmodel.org/skg#concreteProduces
+        </code>
+       </td>
+      </tr>
+      <tr>
+       <th>
+        <a class="hover_property" href="http://purl.org/dc/terms/description" title="An account of the resource. Defined in DCMI Metadata Terms">
+         Description
+        </a>
+       </th>
+       <td>
+        <p>
+         A ConcreteAction that a ConcreteEntity performs (e.g., breaking a particular window at a particular time)
+        </p>
+       </td>
+      </tr>
+      <tr>
+       <th>
+        <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#domain" title="A domain of the subject property. Defined in The RDF Schema vocabulary (RDFS)">
+         Domain
+        </a>
+       </th>
+       <td>
+        <span>
+         <a href="#ConcreteEntity">
+          skg:ConcreteEntity
+         </a>
+         <sup class="sup-c" title="OWL/RDFS Class">
+          c
+         </sup>
+        </span>
+       </td>
+      </tr>
+      <tr>
+       <th>
+        <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#range" title="A range of the subject property. Defined in The RDF Schema vocabulary (RDFS)">
+         Range
+        </a>
+       </th>
+       <td>
+        <span>
+         <a href="#ConcreteAction">
+          skg:ConcreteAction
+         </a>
+         <sup class="sup-c" title="OWL/RDFS Class">
+          c
+         </sup>
+        </span>
+       </td>
+      </tr>
+     </table>
+    </div>
+    <div class="property entity" id="creates">
+     <h3>
+      creates
+      <sup class="sup-op" title="OWL Object Property">
+       op
+      </sup>
+     </h3>
+     <table>
+      <tr>
+       <th>
+        IRI
+       </th>
+       <td>
+        <code>
+         http://signalkg.visualmodel.org/skg#creates
+        </code>
+       </td>
+      </tr>
+      <tr>
+       <th>
+        <a class="hover_property" href="http://purl.org/dc/terms/description" title="An account of the resource. Defined in DCMI Metadata Terms">
+         Description
+        </a>
+       </th>
+       <td>
+        <p>
+         A Signal that an Action creates
+        </p>
+       </td>
+      </tr>
+      <tr>
+       <th>
+        <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#domain" title="A domain of the subject property. Defined in The RDF Schema vocabulary (RDFS)">
+         Domain
+        </a>
+       </th>
+       <td>
+        <span>
+         <a href="#Action">
+          skg:Action
+         </a>
+         <sup class="sup-c" title="OWL/RDFS Class">
+          c
+         </sup>
+        </span>
+       </td>
+      </tr>
+      <tr>
+       <th>
+        <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#range" title="A range of the subject property. Defined in The RDF Schema vocabulary (RDFS)">
+         Range
+        </a>
+       </th>
+       <td>
+        <span>
+         <a href="#Signal">
+          skg:Signal
+         </a>
+         <sup class="sup-c" title="OWL/RDFS Class">
+          c
+         </sup>
+        </span>
+       </td>
+      </tr>
+     </table>
+    </div>
+    <div class="property entity" id="endState">
+     <h3>
+      end state
+      <sup class="sup-op" title="OWL Object Property">
+       op
+      </sup>
+     </h3>
+     <table>
+      <tr>
+       <th>
+        IRI
+       </th>
+       <td>
+        <code>
+         http://signalkg.visualmodel.org/skg#endState
+        </code>
+       </td>
+      </tr>
+      <tr>
+       <th>
+        <a class="hover_property" href="http://purl.org/dc/terms/description" title="An account of the resource. Defined in DCMI Metadata Terms">
+         Description
+        </a>
+       </th>
+       <td>
+        <p>
+         The state of a ConcreteEntity after performing a ConcreteAction (e.g., new position)
+        </p>
+       </td>
+      </tr>
+      <tr>
+       <th>
+        <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#domain" title="A domain of the subject property. Defined in The RDF Schema vocabulary (RDFS)">
+         Domain
+        </a>
+       </th>
+       <td>
+        <span>
+         <a href="#ConcreteAction">
+          skg:ConcreteAction
+         </a>
+         <sup class="sup-c" title="OWL/RDFS Class">
+          c
+         </sup>
+        </span>
+       </td>
+      </tr>
+      <tr>
+       <th>
+        <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#range" title="A range of the subject property. Defined in The RDF Schema vocabulary (RDFS)">
+         Range
+        </a>
+       </th>
+       <td>
+        <span>
+         <a href="http://www.w3.org/2002/07/owl#Thing">
+          owl:Thing
+         </a>
+         <sup class="sup-c" title="OWL/RDFS Class">
+          c
+         </sup>
+        </span>
+       </td>
+      </tr>
+     </table>
+    </div>
+    <div class="property entity" id="entityCategory">
+     <h3>
+      entity category
+      <sup class="sup-op" title="OWL Object Property">
+       op
+      </sup>
+     </h3>
+     <table>
+      <tr>
+       <th>
+        IRI
+       </th>
+       <td>
+        <code>
+         http://signalkg.visualmodel.org/skg#entityCategory
+        </code>
+       </td>
+      </tr>
+      <tr>
+       <th>
+        <a class="hover_property" href="http://purl.org/dc/terms/description" title="An account of the resource. Defined in DCMI Metadata Terms">
+         Description
+        </a>
+       </th>
+       <td>
+        <p>
+         A category of Entity that a ConcreteEntity is a realisation/occurrence of
+        </p>
+       </td>
+      </tr>
+      <tr>
+       <th>
+        <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#domain" title="A domain of the subject property. Defined in The RDF Schema vocabulary (RDFS)">
+         Domain
+        </a>
+       </th>
+       <td>
+        <span>
+         <a href="#ConcreteEntity">
+          skg:ConcreteEntity
+         </a>
+         <sup class="sup-c" title="OWL/RDFS Class">
+          c
+         </sup>
+        </span>
+       </td>
+      </tr>
+      <tr>
+       <th>
+        <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#range" title="A range of the subject property. Defined in The RDF Schema vocabulary (RDFS)">
+         Range
+        </a>
+       </th>
+       <td>
+        <span>
+         <a href="#Entity">
+          skg:Entity
+         </a>
+         <sup class="sup-c" title="OWL/RDFS Class">
+          c
+         </sup>
+        </span>
+       </td>
+      </tr>
+     </table>
+    </div>
+    <div class="property entity" id="fallOff">
+     <h3>
+      fall off
+      <sup class="sup-op" title="OWL Object Property">
+       op
+      </sup>
+     </h3>
+     <table>
+      <tr>
+       <th>
+        IRI
+       </th>
+       <td>
+        <code>
+         http://signalkg.visualmodel.org/skg#fallOff
+        </code>
+       </td>
+      </tr>
+      <tr>
+       <th>
+        <a class="hover_property" href="http://purl.org/dc/terms/description" title="An account of the resource. Defined in DCMI Metadata Terms">
+         Description
+        </a>
+       </th>
+       <td>
+        <p>
+         The falloff of signal strength as a function of distance (e.g., inverse square law)
+        </p>
+       </td>
+      </tr>
+      <tr>
+       <th>
+        <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#domain" title="A domain of the subject property. Defined in The RDF Schema vocabulary (RDFS)">
+         Domain
+        </a>
+       </th>
+       <td>
+        <span>
+         <a href="#Signal">
+          skg:Signal
+         </a>
+         <sup class="sup-c" title="OWL/RDFS Class">
+          c
+         </sup>
+        </span>
+       </td>
+      </tr>
+      <tr>
+       <th>
+        <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#range" title="A range of the subject property. Defined in The RDF Schema vocabulary (RDFS)">
+         Range
+        </a>
+       </th>
+       <td>
+        <span>
+         <a href="#FallOff">
+          skg:FallOff
+         </a>
+         <sup class="sup-c" title="OWL/RDFS Class">
+          c
+         </sup>
+        </span>
+       </td>
+      </tr>
+     </table>
+    </div>
+    <div class="property entity" id="performs">
+     <h3>
+      performs
+      <sup class="sup-op" title="OWL Object Property">
+       op
+      </sup>
+     </h3>
+     <table>
+      <tr>
+       <th>
+        IRI
+       </th>
+       <td>
+        <code>
+         http://signalkg.visualmodel.org/skg#performs
+        </code>
+       </td>
+      </tr>
+      <tr>
+       <th>
+        <a class="hover_property" href="http://purl.org/dc/terms/description" title="An account of the resource. Defined in DCMI Metadata Terms">
+         Description
+        </a>
+       </th>
+       <td>
+        <p>
+         An Action that an Entity is capable of performing
+        </p>
+       </td>
+      </tr>
+      <tr>
+       <th>
+        <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#domain" title="A domain of the subject property. Defined in The RDF Schema vocabulary (RDFS)">
+         Domain
+        </a>
+       </th>
+       <td>
+        <span>
+         <a href="#Entity">
+          skg:Entity
+         </a>
+         <sup class="sup-c" title="OWL/RDFS Class">
+          c
+         </sup>
+        </span>
+       </td>
+      </tr>
+      <tr>
+       <th>
+        <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#range" title="A range of the subject property. Defined in The RDF Schema vocabulary (RDFS)">
+         Range
+        </a>
+       </th>
+       <td>
+        <span>
+         <a href="#Action">
+          skg:Action
+         </a>
+         <sup class="sup-c" title="OWL/RDFS Class">
+          c
+         </sup>
+        </span>
+       </td>
+      </tr>
+     </table>
+    </div>
+    <div class="property entity" id="startState">
+     <h3>
+      start state
+      <sup class="sup-op" title="OWL Object Property">
+       op
+      </sup>
+     </h3>
+     <table>
+      <tr>
+       <th>
+        IRI
+       </th>
+       <td>
+        <code>
+         http://signalkg.visualmodel.org/skg#startState
+        </code>
+       </td>
+      </tr>
+      <tr>
+       <th>
+        <a class="hover_property" href="http://purl.org/dc/terms/description" title="An account of the resource. Defined in DCMI Metadata Terms">
+         Description
+        </a>
+       </th>
+       <td>
+        <p>
+         The state of a ConcreteEntity before performing a ConcreteAction (e.g., initial position)
+        </p>
+       </td>
+      </tr>
+      <tr>
+       <th>
+        <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#domain" title="A domain of the subject property. Defined in The RDF Schema vocabulary (RDFS)">
+         Domain
+        </a>
+       </th>
+       <td>
+        <span>
+         <a href="#ConcreteAction">
+          skg:ConcreteAction
+         </a>
+         <sup class="sup-c" title="OWL/RDFS Class">
+          c
+         </sup>
+        </span>
+       </td>
+      </tr>
+      <tr>
+       <th>
+        <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#range" title="A range of the subject property. Defined in The RDF Schema vocabulary (RDFS)">
+         Range
+        </a>
+       </th>
+       <td>
+        <span>
+         <a href="http://www.w3.org/2002/07/owl#Thing">
+          owl:Thing
+         </a>
+         <sup class="sup-c" title="OWL/RDFS Class">
+          c
+         </sup>
+        </span>
+       </td>
+      </tr>
+     </table>
+    </div>
+   </div>
+   <div class="section" id="datatypeproperties">
+    <h2>
+     Datatype Properties
+    </h2>
+    <div class="property entity" id="actsOn">
+     <h3>
+      acts on
+      <sup class="sup-dp" title="OWL Datatype Property">
+       dp
+      </sup>
+     </h3>
+     <table>
+      <tr>
+       <th>
+        IRI
+       </th>
+       <td>
+        <code>
+         http://signalkg.visualmodel.org/skg#actsOn
+        </code>
+       </td>
+      </tr>
+      <tr>
+       <th>
+        <a class="hover_property" href="http://purl.org/dc/terms/description" title="An account of the resource. Defined in DCMI Metadata Terms">
+         Description
+        </a>
+       </th>
+       <td>
+        <p>
+         A class of object/place than Action can be performed on/in (e.g., windows). Range should be owl:Class, but for OWL-DL conformance only xsd:anyURI constraint is specified.
+        </p>
+       </td>
+      </tr>
+      <tr>
+       <th>
+        <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#domain" title="A domain of the subject property. Defined in The RDF Schema vocabulary (RDFS)">
+         Domain
+        </a>
+       </th>
+       <td>
+        <span>
+         <a href="#Action">
+          skg:Action
+         </a>
+         <sup class="sup-c" title="OWL/RDFS Class">
+          c
+         </sup>
+        </span>
+       </td>
+      </tr>
+      <tr>
+       <th>
+        <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#range" title="A range of the subject property. Defined in The RDF Schema vocabulary (RDFS)">
+         Range
+        </a>
+       </th>
+       <td>
+        <a href="http://www.w3.org/2001/XMLSchema#anyURI">
+         xsd:anyURI
+        </a>
+       </td>
+      </tr>
+     </table>
+    </div>
+    <div class="property entity" id="attenuatedBy">
+     <h3>
+      attenuated by
+      <sup class="sup-dp" title="OWL Datatype Property">
+       dp
+      </sup>
+     </h3>
+     <table>
+      <tr>
+       <th>
+        IRI
+       </th>
+       <td>
+        <code>
+         http://signalkg.visualmodel.org/skg#attenuatedBy
+        </code>
+       </td>
+      </tr>
+      <tr>
+       <th>
+        <a class="hover_property" href="http://purl.org/dc/terms/description" title="An account of the resource. Defined in DCMI Metadata Terms">
+         Description
+        </a>
+       </th>
+       <td>
+        <p>
+         A class of object than attenuates a category of Signal (e.g., walls attenuate sound signals). Range should be owl:Class, but for OWL-DL conformance only xsd:anyURI constraint is specified.
+        </p>
+       </td>
+      </tr>
+      <tr>
+       <th>
+        <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#domain" title="A domain of the subject property. Defined in The RDF Schema vocabulary (RDFS)">
+         Domain
+        </a>
+       </th>
+       <td>
+        <span>
+         <a href="#Signal">
+          skg:Signal
+         </a>
+         <sup class="sup-c" title="OWL/RDFS Class">
+          c
+         </sup>
+        </span>
+       </td>
+      </tr>
+      <tr>
+       <th>
+        <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#range" title="A range of the subject property. Defined in The RDF Schema vocabulary (RDFS)">
+         Range
+        </a>
+       </th>
+       <td>
+        <a href="http://www.w3.org/2001/XMLSchema#anyURI">
+         xsd:anyURI
+        </a>
+       </td>
+      </tr>
+     </table>
+    </div>
+    <div class="property entity" id="endTime">
+     <h3>
+      end time
+      <sup class="sup-dp" title="OWL Datatype Property">
+       dp
+      </sup>
+     </h3>
+     <table>
+      <tr>
+       <th>
+        IRI
+       </th>
+       <td>
+        <code>
+         http://signalkg.visualmodel.org/skg#endTime
+        </code>
+       </td>
+      </tr>
+      <tr>
+       <th>
+        <a class="hover_property" href="http://purl.org/dc/terms/description" title="An account of the resource. Defined in DCMI Metadata Terms">
+         Description
+        </a>
+       </th>
+       <td>
+        <p>
+         The time at which a ConcreteAction finishes
+        </p>
+       </td>
+      </tr>
+      <tr>
+       <th>
+        <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#domain" title="A domain of the subject property. Defined in The RDF Schema vocabulary (RDFS)">
+         Domain
+        </a>
+       </th>
+       <td>
+        <span>
+         <a href="#ConcreteAction">
+          skg:ConcreteAction
+         </a>
+         <sup class="sup-c" title="OWL/RDFS Class">
+          c
+         </sup>
+        </span>
+       </td>
+      </tr>
+      <tr>
+       <th>
+        <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#range" title="A range of the subject property. Defined in The RDF Schema vocabulary (RDFS)">
+         Range
+        </a>
+       </th>
+       <td>
+        <a href="http://www.w3.org/2001/XMLSchema#dateTime">
+         xsd:dateTime
+        </a>
+       </td>
+      </tr>
+     </table>
+    </div>
+    <div class="property entity" id="fov">
+     <h3>
+      fov
+      <sup class="sup-dp" title="OWL Datatype Property">
+       dp
+      </sup>
+     </h3>
+     <table>
+      <tr>
+       <th>
+        IRI
+       </th>
+       <td>
+        <code>
+         http://signalkg.visualmodel.org/skg#fov
+        </code>
+       </td>
+      </tr>
+      <tr>
+       <th>
+        <a class="hover_property" href="http://purl.org/dc/terms/description" title="An account of the resource. Defined in DCMI Metadata Terms">
+         Description
+        </a>
+       </th>
+       <td>
+        <p>
+         The field of view of a Sensor (in radians)
+        </p>
+       </td>
+      </tr>
+      <tr>
+       <th>
+        <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#domain" title="A domain of the subject property. Defined in The RDF Schema vocabulary (RDFS)">
+         Domain
+        </a>
+       </th>
+       <td>
+        <a href="http://www.w3.org/ns/sosa/Sensor">
+         sosa:Sensor
+        </a>
+       </td>
+      </tr>
+      <tr>
+       <th>
+        <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#range" title="A range of the subject property. Defined in The RDF Schema vocabulary (RDFS)">
+         Range
+        </a>
+       </th>
+       <td>
+        <a href="http://www.w3.org/2001/XMLSchema#decimal">
+         xsd:decimal
+        </a>
+       </td>
+      </tr>
+     </table>
+    </div>
+    <div class="property entity" id="prExists">
+     <h3>
+      pr exists
+      <sup class="sup-dp" title="OWL Datatype Property">
+       dp
+      </sup>
+     </h3>
+     <table>
+      <tr>
+       <th>
+        IRI
+       </th>
+       <td>
+        <code>
+         http://signalkg.visualmodel.org/skg#prExists
+        </code>
+       </td>
+      </tr>
+      <tr>
+       <th>
+        <a class="hover_property" href="http://purl.org/dc/terms/description" title="An account of the resource. Defined in DCMI Metadata Terms">
+         Description
+        </a>
+       </th>
+       <td>
+        <p>
+         The probability of the Entity being present (e.g., of an attacker)
+        </p>
+       </td>
+      </tr>
+      <tr>
+       <th>
+        <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#domain" title="A domain of the subject property. Defined in The RDF Schema vocabulary (RDFS)">
+         Domain
+        </a>
+       </th>
+       <td>
+        <span>
+         <a href="#Entity">
+          skg:Entity
+         </a>
+         <sup class="sup-c" title="OWL/RDFS Class">
+          c
+         </sup>
+        </span>
+       </td>
+      </tr>
+      <tr>
+       <th>
+        <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#range" title="A range of the subject property. Defined in The RDF Schema vocabulary (RDFS)">
+         Range
+        </a>
+       </th>
+       <td>
+        <a href="http://www.w3.org/2001/XMLSchema#decimal">
+         xsd:decimal
+        </a>
+       </td>
+      </tr>
+     </table>
+    </div>
+    <div class="property entity" id="prOccurs">
+     <h3>
+      pr occurs
+      <sup class="sup-dp" title="OWL Datatype Property">
+       dp
+      </sup>
+     </h3>
+     <table>
+      <tr>
+       <th>
+        IRI
+       </th>
+       <td>
+        <code>
+         http://signalkg.visualmodel.org/skg#prOccurs
+        </code>
+       </td>
+      </tr>
+      <tr>
+       <th>
+        <a class="hover_property" href="http://purl.org/dc/terms/description" title="An account of the resource. Defined in DCMI Metadata Terms">
+         Description
+        </a>
+       </th>
+       <td>
+        <p>
+         The probability of an Entity (if present) performing an Action (e.g., the probability that an attacker will chose to break in via the window rather than by some other method)
+        </p>
+       </td>
+      </tr>
+      <tr>
+       <th>
+        <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#domain" title="A domain of the subject property. Defined in The RDF Schema vocabulary (RDFS)">
+         Domain
+        </a>
+       </th>
+       <td>
+        <span>
+         <a href="#Action">
+          skg:Action
+         </a>
+         <sup class="sup-c" title="OWL/RDFS Class">
+          c
+         </sup>
+        </span>
+       </td>
+      </tr>
+      <tr>
+       <th>
+        <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#range" title="A range of the subject property. Defined in The RDF Schema vocabulary (RDFS)">
+         Range
+        </a>
+       </th>
+       <td>
+        <a href="http://www.w3.org/2001/XMLSchema#decimal">
+         xsd:decimal
+        </a>
+       </td>
+      </tr>
+     </table>
+    </div>
+    <div class="property entity" id="reliableDistance">
+     <h3>
+      reliable distance
+      <sup class="sup-dp" title="OWL Datatype Property">
+       dp
+      </sup>
+     </h3>
+     <table>
+      <tr>
+       <th>
+        IRI
+       </th>
+       <td>
+        <code>
+         http://signalkg.visualmodel.org/skg#reliableDistance
+        </code>
+       </td>
+      </tr>
+      <tr>
+       <th>
+        <a class="hover_property" href="http://purl.org/dc/terms/description" title="An account of the resource. Defined in DCMI Metadata Terms">
+         Description
+        </a>
+       </th>
+       <td>
+        <p>
+         The distance at which a Sensor is expected to operate reliably (beyond this distance the probability of detection decreases with signal strength)
+        </p>
+       </td>
+      </tr>
+      <tr>
+       <th>
+        <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#domain" title="A domain of the subject property. Defined in The RDF Schema vocabulary (RDFS)">
+         Domain
+        </a>
+       </th>
+       <td>
+        <a href="http://www.w3.org/ns/sosa/Sensor">
+         sosa:Sensor
+        </a>
+       </td>
+      </tr>
+      <tr>
+       <th>
+        <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#range" title="A range of the subject property. Defined in The RDF Schema vocabulary (RDFS)">
+         Range
+        </a>
+       </th>
+       <td>
+        <a href="http://www.w3.org/2001/XMLSchema#decimal">
+         xsd:decimal
+        </a>
+       </td>
+      </tr>
+     </table>
+    </div>
+    <div class="property entity" id="sensitivity">
+     <h3>
+      sensitivity
+      <sup class="sup-dp" title="OWL Datatype Property">
+       dp
+      </sup>
+     </h3>
+     <table>
+      <tr>
+       <th>
+        IRI
+       </th>
+       <td>
+        <code>
+         http://signalkg.visualmodel.org/skg#sensitivity
+        </code>
+       </td>
+      </tr>
+      <tr>
+       <th>
+        <a class="hover_property" href="http://purl.org/dc/terms/description" title="An account of the resource. Defined in DCMI Metadata Terms">
+         Description
+        </a>
+       </th>
+       <td>
+        <p>
+         The sensitivity (true positive rate) of a machine learning Classifier (when operating within the reliable distance of the Sensor)
+        </p>
+       </td>
+      </tr>
+      <tr>
+       <th>
+        <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#domain" title="A domain of the subject property. Defined in The RDF Schema vocabulary (RDFS)">
+         Domain
+        </a>
+       </th>
+       <td>
+        <span>
+         <a href="#Classifier">
+          skg:Classifier
+         </a>
+         <sup class="sup-c" title="OWL/RDFS Class">
+          c
+         </sup>
+        </span>
+       </td>
+      </tr>
+      <tr>
+       <th>
+        <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#range" title="A range of the subject property. Defined in The RDF Schema vocabulary (RDFS)">
+         Range
+        </a>
+       </th>
+       <td>
+        <a href="http://www.w3.org/2001/XMLSchema#decimal">
+         xsd:decimal
+        </a>
+       </td>
+      </tr>
+     </table>
+    </div>
+    <div class="property entity" id="startTime">
+     <h3>
+      start time
+      <sup class="sup-dp" title="OWL Datatype Property">
+       dp
+      </sup>
+     </h3>
+     <table>
+      <tr>
+       <th>
+        IRI
+       </th>
+       <td>
+        <code>
+         http://signalkg.visualmodel.org/skg#startTime
+        </code>
+       </td>
+      </tr>
+      <tr>
+       <th>
+        <a class="hover_property" href="http://purl.org/dc/terms/description" title="An account of the resource. Defined in DCMI Metadata Terms">
+         Description
+        </a>
+       </th>
+       <td>
+        <p>
+         The time at which a ConcreteAction begins
+        </p>
+       </td>
+      </tr>
+      <tr>
+       <th>
+        <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#domain" title="A domain of the subject property. Defined in The RDF Schema vocabulary (RDFS)">
+         Domain
+        </a>
+       </th>
+       <td>
+        <span>
+         <a href="#ConcreteAction">
+          skg:ConcreteAction
+         </a>
+         <sup class="sup-c" title="OWL/RDFS Class">
+          c
+         </sup>
+        </span>
+       </td>
+      </tr>
+      <tr>
+       <th>
+        <a class="hover_property" href="http://www.w3.org/2000/01/rdf-schema#range" title="A range of the subject property. Defined in The RDF Schema vocabulary (RDFS)">
+         Range
+        </a>
+       </th>
+       <td>
+        <a href="http://www.w3.org/2001/XMLSchema#dateTime">
+         xsd:dateTime
+        </a>
+       </td>
+      </tr>
+     </table>
+    </div>
+   </div>
+   <div id="namespaces">
+    <h2>
+     Namespaces
+    </h2>
+    <dl>
+     <dt id="dct">
+      dct
+     </dt>
+     <dd>
+      <code>
+       http://purl.org/dc/terms/
+      </code>
+     </dd>
+     <dt id="ns1">
+      ns1
+     </dt>
+     <dd>
+      <code>
+       http://signalkg.visualmodel.org/
+      </code>
+     </dd>
+     <dt id="owl">
+      owl
+     </dt>
+     <dd>
+      <code>
+       http://www.w3.org/2002/07/owl#
+      </code>
+     </dd>
+     <dt id="rdf">
+      rdf
+     </dt>
+     <dd>
+      <code>
+       http://www.w3.org/1999/02/22-rdf-syntax-ns#
+      </code>
+     </dd>
+     <dt id="rdfs">
+      rdfs
+     </dt>
+     <dd>
+      <code>
+       http://www.w3.org/2000/01/rdf-schema#
+      </code>
+     </dd>
+     <dt id="skg">
+      skg
+     </dt>
+     <dd>
+      <code>
+       http://signalkg.visualmodel.org/skg#
+      </code>
+     </dd>
+     <dt id="skos">
+      skos
+     </dt>
+     <dd>
+      <code>
+       http://www.w3.org/2004/02/skos/core#
+      </code>
+     </dd>
+     <dt id="sosa">
+      sosa
+     </dt>
+     <dd>
+      <code>
+       http://www.w3.org/ns/sosa/
+      </code>
+     </dd>
+     <dt id="xsd">
+      xsd
+     </dt>
+     <dd>
+      <code>
+       http://www.w3.org/2001/XMLSchema#
+      </code>
+     </dd>
+    </dl>
+   </div>
+   <div id="legend">
+    <h2>
+     Legend
+    </h2>
+    <table class="entity">
+     <tr>
+      <td>
+       <sup class="sup-c" title="OWL/RDFS Class">
+        c
+       </sup>
+      </td>
+      <td>
+       Classes
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <sup class="sup-op" title="OWL Object Property">
+        op
+       </sup>
+      </td>
+      <td>
+       Object Properties
+      </td>
+     </tr>
+     <tr>
+      <td>
+       <sup class="sup-dp" title="OWL Datatype Property">
+        dp
+       </sup>
+      </td>
+      <td>
+       Datatype Properties
+      </td>
+     </tr>
+    </table>
+   </div>
+  </div>
+  <div id="pylode">
+   <p>
+    made by
+    <a href="https://github.com/rdflib/pyLODE">
+     <span id="p">
+      p
+     </span>
+     <span id="y">
+      y
+     </span>
+     <span>
+      LODE
+     </span>
+    </a>
+    <a href="https://github.com/rdflib/pyLODE/release/3.0.4" id="version">
+     3.0.4
+    </a>
+   </p>
+  </div>
+  <div id="toc">
+   <h3>
+    Table of Contents
+   </h3>
+   <ul class="first">
+    <li>
+     <h4>
+      <a href="#metadata">
+       Metadata
+      </a>
+     </h4>
+    </li>
+    <li>
+     <h4>
+      <a href="#classes">
+       Classes
+      </a>
+     </h4>
+     <ul class="second">
+      <li>
+       <a href="#Action">
+        Action
+       </a>
+      </li>
+      <li>
+       <a href="#Classifier">
+        Classifier
+       </a>
+      </li>
+      <li>
+       <a href="#ConcreteAction">
+        Concrete Action
+       </a>
+      </li>
+      <li>
+       <a href="#ConcreteEntity">
+        Concrete Entity
+       </a>
+      </li>
+      <li>
+       <a href="#Entity">
+        Entity
+       </a>
+      </li>
+      <li>
+       <a href="#FallOff">
+        Fall Off
+       </a>
+      </li>
+      <li>
+       <a href="#Signal">
+        Signal
+       </a>
+      </li>
+     </ul>
+    </li>
+    <li>
+     <h4>
+      <a href="#objectproperties">
+       Object Properties
+      </a>
+     </h4>
+     <ul class="second">
+      <li>
+       <a href="#actionCategory">
+        action category
+       </a>
+      </li>
+      <li>
+       <a href="#concreteActsOn">
+        concrete acts on
+       </a>
+      </li>
+      <li>
+       <a href="#concreteProduces">
+        concrete produces
+       </a>
+      </li>
+      <li>
+       <a href="#creates">
+        creates
+       </a>
+      </li>
+      <li>
+       <a href="#endState">
+        end state
+       </a>
+      </li>
+      <li>
+       <a href="#entityCategory">
+        entity category
+       </a>
+      </li>
+      <li>
+       <a href="#fallOff">
+        fall off
+       </a>
+      </li>
+      <li>
+       <a href="#performs">
+        performs
+       </a>
+      </li>
+      <li>
+       <a href="#startState">
+        start state
+       </a>
+      </li>
+     </ul>
+    </li>
+    <li>
+     <h4>
+      <a href="#datatypeproperties">
+       Datatype Properties
+      </a>
+     </h4>
+     <ul class="second">
+      <li>
+       <a href="#actsOn">
+        acts on
+       </a>
+      </li>
+      <li>
+       <a href="#attenuatedBy">
+        attenuated by
+       </a>
+      </li>
+      <li>
+       <a href="#endTime">
+        end time
+       </a>
+      </li>
+      <li>
+       <a href="#fov">
+        fov
+       </a>
+      </li>
+      <li>
+       <a href="#prExists">
+        pr exists
+       </a>
+      </li>
+      <li>
+       <a href="#prOccurs">
+        pr occurs
+       </a>
+      </li>
+      <li>
+       <a href="#reliableDistance">
+        reliable distance
+       </a>
+      </li>
+      <li>
+       <a href="#sensitivity">
+        sensitivity
+       </a>
+      </li>
+      <li>
+       <a href="#startTime">
+        start time
+       </a>
+      </li>
+     </ul>
+    </li>
+    <li>
+     <h4>
+      <a href="#namespaces">
+       Namespaces
+      </a>
+     </h4>
+     <ul class="second">
+      <li>
+       <a href="#dct">
+        dct
+       </a>
+      </li>
+      <li>
+       <a href="#ns1">
+        ns1
+       </a>
+      </li>
+      <li>
+       <a href="#owl">
+        owl
+       </a>
+      </li>
+      <li>
+       <a href="#rdf">
+        rdf
+       </a>
+      </li>
+      <li>
+       <a href="#rdfs">
+        rdfs
+       </a>
+      </li>
+      <li>
+       <a href="#skg">
+        skg
+       </a>
+      </li>
+      <li>
+       <a href="#skos">
+        skos
+       </a>
+      </li>
+      <li>
+       <a href="#sosa">
+        sosa
+       </a>
+      </li>
+      <li>
+       <a href="#xsd">
+        xsd
+       </a>
+      </li>
+     </ul>
+    </li>
+    <li>
+     <h4>
+      <a href="#legend">
+       Legend
+      </a>
+     </h4>
+     <ul class="second">
+     </ul>
+    </li>
+   </ul>
+  </div>
+ </body>
+</html>

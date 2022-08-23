@@ -1,0 +1,13 @@
+@prefix : <http://signalkg.visualmodel.org/demo#> .
+@prefix skg: <http://signalkg.visualmodel.org/skg#> .
+
+:evader1 a skg:ConcreteEntity ;
+    skg:concretePerforms :concreteAction22,
+        :concreteAction23,
+        :concreteAction24,
+        :concreteAction25,
+        :concreteAction26,
+        :concreteAction27,
+        :concreteAction28 ;
+    skg:entityCategory :evader .
+

@@ -1,0 +1,19 @@
+@prefix : <http://signalkg.visualmodel.org/demo#> .
+@prefix skg: <http://signalkg.visualmodel.org/skg#> .
+
+:dangerousDriver1 a skg:ConcreteEntity ;
+    skg:concretePerforms :concreteAction10,
+        :concreteAction11,
+        :concreteAction12,
+        :concreteAction13,
+        :concreteAction14,
+        :concreteAction15,
+        :concreteAction6,
+        :concreteAction7 ;
+    skg:entityCategory :dangerousDriver .
+
+:pedestrian1 a skg:ConcreteEntity ;
+    skg:concretePerforms :concreteAction8,
+        :concreteAction9 ;
+    skg:entityCategory :pedestrian .
+

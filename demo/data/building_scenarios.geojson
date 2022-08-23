@@ -1,0 +1,10 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    { "type": "Feature", "properties": { "action": "movement", "startTime": "2022-06-28T10:00:00", "endTime": "2022-06-28T10:00:05", "entityType": "attacker", "entityName": "attacker1", "actsOn": "outdoors" }, "geometry": { "type": "LineString", "coordinates": [ [ 10.337076522326267, 0.385382951184026 ], [ 10.349298875611957, -0.794074140885356 ] ] } },
+    { "type": "Feature", "properties": { "action": "breakWindow", "startTime": "2022-06-28T10:00:05", "endTime": "2022-06-28T10:00:15", "entityType": "attacker", "entityName": "attacker1", "actsOn": "window1" }, "geometry": { "type": "LineString", "coordinates": [ [ 10.349298875611957, -0.824630024099589 ], [ 10.34318769896911, -0.885741790528054 ] ] } },
+    { "type": "Feature", "properties": { "action": "carryWeaponKnife", "startTime": "2022-06-28T10:00:15", "endTime": "2022-06-28T10:00:20", "entityType": "attacker", "entityName": "attacker1", "actsOn": "conferenceRoom1" }, "geometry": { "type": "LineString", "coordinates": [ [ 10.355410052254804, -1.215745329241767 ], [ 10.392077112111885, -3.709105399523156 ] ] } },
+    { "type": "Feature", "properties": { "action": "carryCookingKnife", "startTime": "2022-06-28T10:00:0", "endTime": "2022-06-28T10:00:10", "entityType": "employee", "entityName": "employee1", "actsOn": "diningRoom1" }, "geometry": { "type": "LineString", "coordinates": [ [ 5.154798729192398, -6.660803718018036 ], [ 5.136465199263859, -2.945208319167339 ] ] } },
+    { "type": "Feature", "properties": { "action": "dropTray", "startTime": "2022-06-28T10:00:10", "endTime": "2022-06-28T10:00:20", "entityType": "employee", "entityName": "employee1", "actsOn": "diningRoom1" }, "geometry": { "type": "LineString", "coordinates": [ [ 5.134937405103148, -2.942152730845916 ], [ 5.128826228460301, -2.819929197988986 ] ] } }
+  ]
+}

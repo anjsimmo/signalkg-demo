@@ -1,0 +1,8 @@
+@prefix : <http://signalkg.visualmodel.org/demo#> .
+@prefix skg: <http://signalkg.visualmodel.org/skg#> .
+
+:employee1 a skg:ConcreteEntity ;
+    skg:concretePerforms :concreteAction4,
+        :concreteAction5 ;
+    skg:entityCategory :employee .
+

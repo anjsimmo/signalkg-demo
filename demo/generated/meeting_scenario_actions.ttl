@@ -1,0 +1,65 @@
+@prefix : <http://signalkg.visualmodel.org/demo#> .
+@prefix pose: <http://signalkg.visualmodel.org/pose#> .
+@prefix skg: <http://signalkg.visualmodel.org/skg#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+:concreteAction1 a skg:ConcreteAction ;
+    skg:actionCategory :movement ;
+    skg:concreteActsOn :outdoors ;
+    skg:endState [ pose:x 10.349298875611957 ;
+            pose:y -0.794074140885356 ;
+            pose:z 0.0 ] ;
+    skg:endTime "2022-06-28T10:00:05"^^xsd:dateTime ;
+    skg:startState [ pose:x 10.337076522326267 ;
+            pose:y 0.385382951184026 ;
+            pose:z 0.0 ] ;
+    skg:startTime "2022-06-28T10:00:00"^^xsd:dateTime .
+
+:concreteAction2 a skg:ConcreteAction ;
+    skg:actionCategory :breakWindow ;
+    skg:concreteActsOn :window1 ;
+    skg:endState [ pose:x 10.34318769896911 ;
+            pose:y -0.885741790528054 ;
+            pose:z 0.0 ] ;
+    skg:endTime "2022-06-28T10:00:15"^^xsd:dateTime ;
+    skg:startState [ pose:x 10.349298875611957 ;
+            pose:y -0.824630024099589 ;
+            pose:z 0.0 ] ;
+    skg:startTime "2022-06-28T10:00:05"^^xsd:dateTime .
+
+:concreteAction3 a skg:ConcreteAction ;
+    skg:actionCategory :carryWeaponKnife ;
+    skg:concreteActsOn :conferenceRoom1 ;
+    skg:endState [ pose:x 10.392077112111885 ;
+            pose:y -3.709105399523156 ;
+            pose:z 0.0 ] ;
+    skg:endTime "2022-06-28T10:00:20"^^xsd:dateTime ;
+    skg:startState [ pose:x 10.355410052254804 ;
+            pose:y -1.215745329241767 ;
+            pose:z 0.0 ] ;
+    skg:startTime "2022-06-28T10:00:15"^^xsd:dateTime .
+
+:concreteAction4 a skg:ConcreteAction ;
+    skg:actionCategory :carryCookingKnife ;
+    skg:concreteActsOn :diningRoom1 ;
+    skg:endState [ pose:x 5.136465199263859 ;
+            pose:y -2.945208319167339 ;
+            pose:z 0.0 ] ;
+    skg:endTime "2022-06-28T10:00:10"^^xsd:dateTime ;
+    skg:startState [ pose:x 5.154798729192398 ;
+            pose:y -6.660803718018036 ;
+            pose:z 0.0 ] ;
+    skg:startTime "2022-06-28T10:00:00"^^xsd:dateTime .
+
+:concreteAction5 a skg:ConcreteAction ;
+    skg:actionCategory :dropTray ;
+    skg:concreteActsOn :diningRoom1 ;
+    skg:endState [ pose:x 5.128826228460301 ;
+            pose:y -2.819929197988986 ;
+            pose:z 0.0 ] ;
+    skg:endTime "2022-06-28T10:00:20"^^xsd:dateTime ;
+    skg:startState [ pose:x 5.134937405103148 ;
+            pose:y -2.942152730845916 ;
+            pose:z 0.0 ] ;
+    skg:startTime "2022-06-28T10:00:10"^^xsd:dateTime .
+

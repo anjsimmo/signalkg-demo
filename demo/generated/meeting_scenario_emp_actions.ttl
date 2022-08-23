@@ -1,0 +1,29 @@
+@prefix : <http://signalkg.visualmodel.org/demo#> .
+@prefix pose: <http://signalkg.visualmodel.org/pose#> .
+@prefix skg: <http://signalkg.visualmodel.org/skg#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+:concreteAction4 a skg:ConcreteAction ;
+    skg:actionCategory :carryCookingKnife ;
+    skg:concreteActsOn :diningRoom1 ;
+    skg:endState [ pose:x 5.136465199263859 ;
+            pose:y -2.945208319167339 ;
+            pose:z 0.0 ] ;
+    skg:endTime "2022-06-28T10:00:10"^^xsd:dateTime ;
+    skg:startState [ pose:x 5.154798729192398 ;
+            pose:y -6.660803718018036 ;
+            pose:z 0.0 ] ;
+    skg:startTime "2022-06-28T10:00:00"^^xsd:dateTime .
+
+:concreteAction5 a skg:ConcreteAction ;
+    skg:actionCategory :dropTray ;
+    skg:concreteActsOn :diningRoom1 ;
+    skg:endState [ pose:x 5.128826228460301 ;
+            pose:y -2.819929197988986 ;
+            pose:z 0.0 ] ;
+    skg:endTime "2022-06-28T10:00:20"^^xsd:dateTime ;
+    skg:startState [ pose:x 5.134937405103148 ;
+            pose:y -2.942152730845916 ;
+            pose:z 0.0 ] ;
+    skg:startTime "2022-06-28T10:00:10"^^xsd:dateTime .
+

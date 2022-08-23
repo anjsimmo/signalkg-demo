@@ -1,0 +1,168 @@
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skg: <http://signalkg.visualmodel.org/skg#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix ssn: <http://www.w3.org/ns/ssn/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://signalkg.visualmodel.org/skg>
+  a owl:Ontology ;
+  dct:created "2022-06-13"^^xsd:date ;
+  rdfs:comment "An ontology describing the high level concepts needed to construct a knowledge graph for reasoning about the underlying causes of sensor observations"@en ;
+  rdfs:label "SignalKG Ontology" ;
+.
+skg:Action
+  a owl:Class ;
+  rdfs:comment "An Action that can be performed by an Entity (e.g., break window)"@en ;
+  rdfs:subClassOf owl:Thing ;
+.
+skg:Classifier
+  a owl:Class ;
+  rdfs:comment "A procedure or machine learning model for detecting the presence of a signal"@en ;
+  rdfs:subClassOf owl:Thing ;
+.
+skg:ConcreteAction
+  a owl:Class ;
+  rdfs:comment "A concrete realisation/occurrence of an Action (e.g., breaking a particular window at a particular time)"@en ;
+  rdfs:subClassOf owl:Thing ;
+.
+skg:ConcreteEntity
+  a owl:Class ;
+  rdfs:comment "A concrete realisation/occurrence of an Entity (e.g., a particular person)"@en ;
+  rdfs:subClassOf owl:Thing ;
+.
+skg:Entity
+  a owl:Class ;
+  rdfs:comment "An Entity capable of performing some Action (e.g., humans)"@en ;
+  rdfs:subClassOf owl:Thing ;
+.
+skg:FallOff
+  a owl:Class ;
+  rdfs:comment "Falloff of signal strength as a function of distance (e.g., an inverse square law)"@en ;
+  rdfs:subClassOf owl:Thing ;
+.
+skg:Signal
+  a owl:Class ;
+  rdfs:comment "A Signal category (audio, vision, social, etc.) or sub-category (e.g., the sound of footsteps) that is created by some Action and is observable by some Sensor"@en ;
+  rdfs:subClassOf skos:Concept ;
+.
+skg:actionCategory
+  a owl:ObjectProperty ;
+  rdfs:comment "A category of Action that a ConcreteAction is a realisation/occurrence of"@en ;
+  rdfs:domain skg:ConcreteAction ;
+  rdfs:range skg:Action ;
+.
+skg:actsOn
+  a owl:DatatypeProperty ;
+  rdfs:comment "A class of object/place than Action can be performed on/in (e.g., windows). Range should be owl:Class, but for OWL-DL conformance only xsd:anyURI constraint is specified."@en ;
+  rdfs:domain skg:Action ;
+  rdfs:range xsd:anyURI ;
+.
+skg:attenuatedBy
+  a owl:DatatypeProperty ;
+  rdfs:comment "A class of object than attenuates a category of Signal (e.g., walls attenuate sound signals). Range should be owl:Class, but for OWL-DL conformance only xsd:anyURI constraint is specified."@en ;
+  rdfs:domain skg:Signal ;
+  rdfs:range xsd:anyURI ;
+.
+skg:concreteActsOn
+  a owl:ObjectProperty ;
+  rdfs:comment "A particular object/place that a ConcreteAction is performed on/in (e.g., a particular window)"@en ;
+  rdfs:domain skg:ConcreteAction ;
+  rdfs:range owl:Thing ;
+.
+skg:concreteProduces
+  a owl:ObjectProperty ;
+  rdfs:comment "A ConcreteAction that a ConcreteEntity performs (e.g., breaking a particular window at a particular time)"@en ;
+  rdfs:domain skg:ConcreteEntity ;
+  rdfs:range skg:ConcreteAction ;
+.
+skg:creates
+  a owl:ObjectProperty ;
+  rdfs:comment "A Signal that an Action creates"@en ;
+  rdfs:domain skg:Action ;
+  rdfs:range skg:Signal ;
+.
+skg:endState
+  a owl:ObjectProperty ;
+  rdfs:comment "The state of a ConcreteEntity after performing a ConcreteAction (e.g., new position)"@en ;
+  rdfs:domain skg:ConcreteAction ;
+  rdfs:range owl:Thing ;
+.
+skg:endTime
+  a owl:DatatypeProperty ;
+  rdfs:comment "The time at which a ConcreteAction finishes"@en ;
+  rdfs:domain skg:ConcreteAction ;
+  rdfs:range xsd:dateTime ;
+.
+skg:entityCategory
+  a owl:ObjectProperty ;
+  rdfs:comment "A category of Entity that a ConcreteEntity is a realisation/occurrence of"@en ;
+  rdfs:domain skg:ConcreteEntity ;
+  rdfs:range skg:Entity ;
+.
+skg:fallOff
+  a owl:ObjectProperty ;
+  rdfs:comment "The falloff of signal strength as a function of distance (e.g., inverse square law)"@en ;
+  rdfs:domain skg:Signal ;
+  rdfs:range skg:FallOff ;
+.
+skg:fov
+  a owl:DatatypeProperty ;
+  rdfs:comment "The field of view of a Sensor (in radians)"@en ;
+  rdfs:domain sosa:Sensor ;
+  rdfs:range xsd:decimal ;
+.
+skg:inverseLinear
+  a skg:FallOff ;
+.
+skg:inverseSquare
+  a skg:FallOff ;
+.
+skg:noFallOff
+  a skg:FallOff ;
+.
+skg:performs
+  a owl:ObjectProperty ;
+  rdfs:comment "An Action that an Entity is capable of performing"@en ;
+  rdfs:domain skg:Entity ;
+  rdfs:range skg:Action ;
+.
+skg:prExists
+  a owl:DatatypeProperty ;
+  rdfs:comment "The probability of the Entity being present (e.g., of an attacker)"@en ;
+  rdfs:domain skg:Entity ;
+  rdfs:range xsd:decimal ;
+.
+skg:prOccurs
+  a owl:DatatypeProperty ;
+  rdfs:comment "The probability of an Entity (if present) performing an Action (e.g., the probability that an attacker will chose to break in via the window rather than by some other method)"@en ;
+  rdfs:domain skg:Action ;
+  rdfs:range xsd:decimal ;
+.
+skg:reliableDistance
+  a owl:DatatypeProperty ;
+  rdfs:comment "The distance at which a Sensor is expected to operate reliably (beyond this distance the probability of detection decreases with signal strength)"@en ;
+  rdfs:domain sosa:Sensor ;
+  rdfs:range xsd:decimal ;
+.
+skg:sensitivity
+  a owl:DatatypeProperty ;
+  rdfs:comment "The sensitivity (true positive rate) of a machine learning Classifier (when operating within the reliable distance of the Sensor)"@en ;
+  rdfs:domain skg:Classifier ;
+  rdfs:range xsd:decimal ;
+.
+skg:startState
+  a owl:ObjectProperty ;
+  rdfs:comment "The state of a ConcreteEntity before performing a ConcreteAction (e.g., initial position)"@en ;
+  rdfs:domain skg:ConcreteAction ;
+  rdfs:range owl:Thing ;
+.
+skg:startTime
+  a owl:DatatypeProperty ;
+  rdfs:comment "The time at which a ConcreteAction begins"@en ;
+  rdfs:domain skg:ConcreteAction ;
+  rdfs:range xsd:dateTime ;
+.

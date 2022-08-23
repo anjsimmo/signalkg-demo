@@ -1,0 +1,115 @@
+@prefix : <http://signalkg.visualmodel.org/demo#> .
+@prefix asset: <https://w3id.org/rec/asset/> .
+@prefix building: <https://w3id.org/rec/building/> .
+@prefix pose: <http://signalkg.visualmodel.org/pose#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+:conferenceRoom1 a building:ConferenceRoom ;
+    pose:x 12.0 ;
+    pose:y -3.0 ;
+    pose:z 1.0 .
+
+:diningRoom1 a building:DiningRoom ;
+    pose:x 3.0 ;
+    pose:y -3.0 ;
+    pose:z 0.0 .
+
+:eastwall a building:Wall ;
+    pose:height 2.0 ;
+    pose:pitch 0.0 ;
+    pose:roll 0.0 ;
+    pose:thickness 0.1 ;
+    pose:width 5.011684071443936 ;
+    pose:x 14.992964602300978 ;
+    pose:y -3.5411577785460153 ;
+    pose:yaw 3.1395093232705342 ;
+    pose:z 0.0 .
+
+:innerwall1 a building:Wall ;
+    pose:height 2.0 ;
+    pose:pitch 0.0 ;
+    pose:roll 0.0 ;
+    pose:thickness 0.1 ;
+    pose:width 0.5977041928800487 ;
+    pose:x 6.928534495486627 ;
+    pose:y -1.3495919192533061 ;
+    pose:yaw -3.1365916978789805 ;
+    pose:z 0.0 .
+
+:innerwall2 a building:Wall ;
+    pose:height 2.0 ;
+    pose:pitch 0.0 ;
+    pose:roll 0.0 ;
+    pose:thickness 0.1 ;
+    pose:width 0.4644896282257994 ;
+    pose:x 6.920928778975051 ;
+    pose:y -5.802183399698098 ;
+    pose:yaw 3.128435518117041 ;
+    pose:z 0.0 .
+
+:northwall1 a building:Wall ;
+    pose:height 2.0 ;
+    pose:pitch 0.0 ;
+    pose:roll 0.0 ;
+    pose:thickness 0.1 ;
+    pose:width 7.88699831559055 ;
+    pose:x 3.949075253800551 ;
+    pose:y -1.0574839161478446 ;
+    pose:yaw -1.5696030099388922 ;
+    pose:z 0.0 .
+
+:northwall2 a building:Wall ;
+    pose:height 2.0 ;
+    pose:pitch 0.0 ;
+    pose:roll 0.0 ;
+    pose:thickness 0.1 ;
+    pose:width 1.4715298524608251 ;
+    pose:x 14.265982042000005 ;
+    pose:y -1.040869539018308 ;
+    pose:yaw -1.575125304081956 ;
+    pose:z 0.0 .
+
+:southwall1 a building:Wall ;
+    pose:height 2.0 ;
+    pose:pitch 0.0 ;
+    pose:roll 0.0 ;
+    pose:thickness 0.1 ;
+    pose:width 8.874844091992808 ;
+    pose:x 10.550325134269794 ;
+    pose:y -6.041773883348498 ;
+    pose:yaw 1.5696198567494384 ;
+    pose:z 0.0 .
+
+:southwall2 a building:Wall ;
+    pose:height 2.0 ;
+    pose:pitch 0.0 ;
+    pose:roll 0.0 ;
+    pose:thickness 0.1 ;
+    pose:width 4.146574864455675 ;
+    pose:x 2.080945466855854 ;
+    pose:y -6.02859835361845 ;
+    pose:yaw 1.568398249857067 ;
+    pose:z 0.0 .
+
+:westwall a building:Wall ;
+    pose:height 2.0 ;
+    pose:pitch 0.0 ;
+    pose:roll 0.0 ;
+    pose:thickness 0.1 ;
+    pose:width 4.969167329425053 ;
+    pose:x -0.00091978283267 ;
+    pose:y -3.5429904693010297 ;
+    pose:yaw -0.0 ;
+    pose:z 0.0 .
+
+:window1 a asset:Window ;
+    pose:height 2.0 ;
+    pose:pitch 0.0 ;
+    pose:roll 0.0 ;
+    pose:thickness 0.1 ;
+    pose:width 5.647011479733816 ;
+    pose:x 10.716077343681574 ;
+    pose:y -1.04336638744851 ;
+    pose:yaw -1.5707963267948966 ;
+    pose:z 0.0 .
+
