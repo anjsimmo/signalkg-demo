@@ -2,9 +2,7 @@
 
 Signal Knowledge Graph (SignalKG) supports machines to reason about the underlying causes of sensor observations.
 
-Ontology: https://signalkg.visualmodel.org/skg/
-
-Interactive demo: https://signalkg.visualmodel.org/skg/
+Interactive demo: https://signalkg.visualmodel.org
 
 Paper: Anj Simmons, Rajesh Vasa, Antonio Giardina, SignalKG: Towards reasoning about the underlying causes of sensor observations. In _ISWC (Posters/Demos/Industry)_. 2022. https://arxiv.org/abs/2208.05627
 
