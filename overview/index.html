@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SignalKG: Towards reasoning about the underlying causes of sensor observations</title>
+<link href="buttons.css" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css?family=Cutive+Mono" rel="stylesheet" />
+<style type="text/css">
+html {
+  font-size: 1.2em;
+}
+h1,h2, h3, .org {
+  font-family: 'Cutive Mono', monospace;
+  font-weight: normal;
+}
+header {
+  text-align: center;
+}
+footer {
+  margin-top: 4em;
+  color: gray;
+}
+main {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.org {
+  font-size: 4.4em;
+  padding: 0;
+  margin: 0;
+  color: #444444;
+}
+.name {
+  font-size: 1.5em;
+  padding: 0;
+  margin: 0;
+}
+@media all and (max-width: 1000px) {
+  .org {
+    font-size: 8.5vw;
+  }
+  .name {
+    font-size: 2.9vw;
+  }
+}
+</style>
+</head>
+
+<body>
+<header>
+<p class="org">SignalKG</p>
+<h1 class="name">Towards reasoning about the underlying<br/>causes of sensor observations</h1>
+<p>
+<a class="btn btn-primary btn-lg" role="button" href="demo" style="font-size:1.5em; text-transform:none;">Launch Demo!</a><br/>
+</p>
+</header>
+
+<br/>
+
+<main>
+
+<p>
+Signal Knowledge Graph (SignalKG) assists machines to reason about the cause of signals observed by sensors.
+</p>
+
+<iframe width="854" height="480" src="https://www.youtube.com/embed/yvKNaJY-6Sc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<h2>Details</h2>
+
+<p>
+<a href="https://signalkg.visualmodel.org/skg/" target="_blank">Signal Knowledge Graph (SignalKG)</a> captures information needed to reason about the different types of signals (audio, vision, etc.) observed by sensors and possible causes of these observations. <em>Entities</em> perform <em>Actions</em>, <em>Actions</em> create <em>Signals</em>, and the presence of a signal is determined by a <em>Classifier</em>:
+<pre><code>:attacker
+  a skg:Entity ;
+  skg:prExists 0.5 ;
+  skg:performs :breakWindow .
+
+:breakWindow
+  a skg:Action ;
+  skg:actsOn asset:Window ;
+  skg:prOccurs 0.5 ;
+  skg:creates :soundOfBreakingGlass .
+
+:soundOfBreakingGlass
+  a skg:Signal ;
+  skos:broader :soundOfGlass .
+
+:yamNet
+  a skg:ClassifierModel ;
+  skg:sensitivity 0.9 .
+</code></pre>
+</p>
+
+<p>
+Sensors are described using the W3C <a href="https://www.w3.org/TR/vocab-ssn/" target="_blank">Semantic Sensor Network (SSN/SOSA)</a> ontology, and linked to signals in the Signal Knowledge Graph via the <code>sosa:observes</code> property:
+<pre><code>:mic1 a sosa:Sensor;
+    ssn:implements :yamNet ;
+    sosa:observes :soundOfGlass .
+</code></pre>
+</p>
+</p>
+<p>
+The smart building that sensors observe is defined using the <a href="https://www.realestatecore.io/" target="_blank">RealEstateCore (REC)</a> ontology:
+<pre><code>:conferenceRoom1 a building:ConferenceRoom .</code></pre>
+
+<!-- <p>
+The simulation is used to collect example Sensor Observations that could occur under a particular scenario. The observations are represented using the W3C Semantic Sensor Network (SSN/SOSA) ontology. In the next step, we will attempt to infer what took place given only the Sensor Observations (and our understanding of possible underlying causes of those signals specified in the Knowledge Graphs in the previous tab).
+</p> -->
+
+<p>
+To make inferences, we generate a Bayesian Belief Network from the Knowledge Graphs. The Bayesian Belief Network models the probability that an entity (if present) will perform an action, the probability that an action (if it occurs) will result in a signal, and a signal (if emitted) will be detected by a sensor (taking into account the distance of the sensor from the source, any barriers between the source and the sensor that may block the signal, and the sensitivity of the classifier). We infer what took place given the Sensor Observations, by conditioning the Bayesian Belief Network on those observations.
+</p>
+
+<a class="btn btn-success" role="button" href="https://arxiv.org/abs/2208.05627">Paper</a>
+<a class="btn btn-success" role="button" href="https://github.com/anjsimmo/signalkg-demo">Source Code</a>
+<a class="btn btn-success" role="button" href="demo">Launch Demo!</a>
+
+<footer>
+This research was funded by National Intelligence Postdoctoral Grant NIPG-2021-006.
+</footer>
+</main>
+</body>
+</html>
