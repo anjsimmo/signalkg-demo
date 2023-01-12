@@ -15,6 +15,7 @@ conda create -n skg python=3
 conda activate skg
 conda install -c conda-forge nodejs==18.7.0
 pip install -r requirements.txt
+cd demo; npm install
 ```
 
 ## Building
