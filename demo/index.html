@@ -5,44 +5,36 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=1700">
   <style>
-    .label {
-      /*background-color: white;*/
-      color: black;
-      /*border: solid black;*/
-      opacity: 0.8;
-      font-family: monospace;
-      background-image: url("images/cutout.png");
-      /* background-position: bottom center; */
-      background-size: 100% 100%;
-      padding-bottom: 1em;
-    }
-    
-    h1 {
-      font-size: 2em !important;
-    }
-    /* .block1 {
-      float: left;
-    }
-    .block2 {
-      float: left;
-    } */
-    #bbn { border: 1px solid black; }
-    #bbn g rect.node-shape { border-radius: 5px !important; fill:#ffecb3 !important; cursor: move; }
-    #bbn g text.node-name { font-weight: 800 !important }
-    #bbn g rect.node-bar { fill: green !important }
-    #bbn g text.node-value { fill:rgb(0,0,0) !important; font-size: 15px; cursor: pointer; }
-    #bbn line.edge-line { stroke:rgb(0,0,0) !important }
-    #bbn path.edge-head { fill:rgb(0,0,0) !important }
-    #bbn g text.node-pct { display:none; }
-  </style>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  .label {
+    /*background-color: white;*/
+    color: black;
+    /*border: solid black;*/
+    opacity: 0.8;
+    font-family: monospace;
+    background-image: url("images/cutout.png");
+    /* background-position: bottom center; */
+    background-size: 100% 100%;
+    padding-bottom: 1em;
+  }
+  h1 {
+    font-size: 2em !important;
+  }
+  #bbn { border: 1px solid black; }
+  #bbn g rect.node-shape { border-radius: 5px !important; fill:#ffecb3 !important; cursor: move; }
+  #bbn g text.node-name { font-weight: 800 !important }
+  #bbn g rect.node-bar { fill: green !important }
+  #bbn g text.node-value { fill:rgb(0,0,0) !important; font-size: 15px; cursor: pointer; }
+  #bbn line.edge-line { stroke:rgb(0,0,0) !important }
+  #bbn path.edge-head { fill:rgb(0,0,0) !important }
+  #bbn g text.node-pct { display:none; }
+</style>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 </head>
 
 <body>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
   <script src="dist/bundle.js"></script>
   <div style="width:1700px; margin:0 auto;">
-
     <div style="float:right;">
       <a role="button" class="btn btn-outline-dark" href="https://github.com/anjsimmo/signalkg-demo">
         <!-- Github icon from https://icons.getbootstrap.com/icons/github/ -->
@@ -51,10 +43,8 @@
         </svg>
         anjsimmo/signalkg-demo
       </a>
-
-      <!-- <a href="https://github.com/anjsimmo/signalkg-demo">Github</a> -->
     </div>
-
+    
     <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
       <li class="nav-item" role="presentation">
         <button class="nav-link active" id="pills-kg-tab" data-bs-toggle="pill" data-bs-target="#pills-kg" type="button" role="tab" aria-controls="pills-kg" aria-selected="true">1. Knowledge Graphs</button>
@@ -66,7 +56,7 @@
         <button class="nav-link" id="pills-inference-tab" data-bs-toggle="pill" data-bs-target="#pills-inference" type="button" role="tab" aria-controls="pills-inference" aria-selected="false">3. Inference</button>
       </li>
     </ul>
-        
+    
     <div class="tab-content" id="pills-tabContent">
       <div class="tab-pane fade show active" id="pills-kg" role="tabpanel" aria-labelledby="pills-kg-tab">
         <div style="width:1000px; margin: auto auto">
@@ -79,17 +69,13 @@
         </div>
         <br />
         <div style="margin-bottom:2em;">
-
-
           <div style="float:left">
             <h1>Signal Graph</h1>
             <textarea id="signalkg-data" rows="30" style="width:560px" readonly="true"></textarea>
             <p>Defined using <a href="https://signalkg.visualmodel.org/skg/" target="_blank">SignalKG (SKG)</a> ontology.</p>
             <p style="width:560px; padding-right:10px;">
-
               The Signal Graph captures information needed to reason about the different types of signals (audio, vision, etc.) observed by sensors and possible causes of these observations. <em>Entities</em> perform <em>Actions</em>, <em>Actions</em> create <em>Signals</em>, and the presence of a signal is determined by a <em>Classifier</em>.
             </p>
-
           </div>
           <div style="float:left">
             <h1>Sensor Graph</h1>
@@ -100,9 +86,8 @@
             <p style="width:560px; padding-right:10px;">
               Sensors are described using the Semantic Sensor Network ontology, and linked to signals in the Signal Graph via the <code>sosa:observes</code> property.
             </p>
-
           </div>
-
+          
           <div style="float:left">
             <h1>Building/Environment Graph</h1>
             <textarea id="map-data" rows="30" style="width:560px" readonly="true"></textarea>
@@ -115,53 +100,50 @@
         </div>
       </div>
       <div class="tab-pane fade" id="pills-sim" role="tabpanel" aria-labelledby="pills-sim-tab">
-          <div style="width:1000px; margin: auto auto">
-            Example Scenario to Simulate:
-            <select id="demoScenarioSelect" class="form-select" style="width:1000px;">
-              <option value="generated/meeting_scenario.ttl generated/meeting_scenario_actions.ttl" data-applies-to-graphs="generated/meeting.json generated/simple.json">Building - Attacker and Employee</option>
-              <option value="generated/meeting_scenario_emp.ttl generated/meeting_scenario_emp_actions.ttl" data-applies-to-graphs="generated/meeting.json generated/simple.json">Building - Employee only</option>
-              <option value="generated/meeting_scenario_attack.ttl generated/meeting_scenario_attack_actions.ttl" data-applies-to-graphs="generated/meeting.json generated/simple.json">Building - Attacker only</option>
-              <option value="generated/city_scenario_dangerous_driver.ttl generated/city_scenario_dangerous_driver_actions.ttl" data-applies-to-graphs="generated/city.json">City - Dangerous Driver</option>
-              <option value="generated/city_scenario_dumper.ttl generated/city_scenario_dumper_actions.ttl" data-applies-to-graphs="generated/city.json">City - Dumper</option>
-              <option value="generated/city_scenario_evader.ttl generated/city_scenario_evader_actions.ttl" data-applies-to-graphs="generated/city.json">City - Evader</option>
-              <option value="generated/city_scenario_safe_driver.ttl generated/city_scenario_safe_driver_actions.ttl" data-applies-to-graphs="generated/city.json">City - Safe Driver</option>
-              <option value="data/scenario_empty.ttl data/scenario_empty_actions.ttl" data-applies-to-graphs="generated/meeting.json generated/simple.json generated/city.json">Empty/custom</option>
-            </select>
+        <div style="width:1000px; margin: auto auto">
+          Example Scenario to Simulate:
+          <select id="demoScenarioSelect" class="form-select" style="width:1000px;">
+            <option value="generated/meeting_scenario.ttl generated/meeting_scenario_actions.ttl" data-applies-to-graphs="generated/meeting.json generated/simple.json">Building - Attacker and Employee</option>
+            <option value="generated/meeting_scenario_emp.ttl generated/meeting_scenario_emp_actions.ttl" data-applies-to-graphs="generated/meeting.json generated/simple.json">Building - Employee only</option>
+            <option value="generated/meeting_scenario_attack.ttl generated/meeting_scenario_attack_actions.ttl" data-applies-to-graphs="generated/meeting.json generated/simple.json">Building - Attacker only</option>
+            <option value="generated/city_scenario_dangerous_driver.ttl generated/city_scenario_dangerous_driver_actions.ttl" data-applies-to-graphs="generated/city.json">City - Dangerous Driver</option>
+            <option value="generated/city_scenario_dumper.ttl generated/city_scenario_dumper_actions.ttl" data-applies-to-graphs="generated/city.json">City - Dumper</option>
+            <option value="generated/city_scenario_evader.ttl generated/city_scenario_evader_actions.ttl" data-applies-to-graphs="generated/city.json">City - Evader</option>
+            <option value="generated/city_scenario_safe_driver.ttl generated/city_scenario_safe_driver_actions.ttl" data-applies-to-graphs="generated/city.json">City - Safe Driver</option>
+            <option value="data/scenario_empty.ttl data/scenario_empty_actions.ttl" data-applies-to-graphs="generated/meeting.json generated/simple.json generated/city.json">Empty/custom</option>
+          </select>
+        </div>
+        <br />
+        <div style="margin-bottom:2em;">
+          <div style="float:left">
+            <h1>Concrete Entities</h1>
+            <textarea id="scenario-data" rows="12" style="width:840px"></textarea>
+            <p style="width:840px; padding-right:10px;">
+              Concrete entities to simulate are linked to the entity category in the Signal Graph (e.g. attacker) via the <code>skg:ConcreteEntity</code> property.
+            </p>
           </div>
-          <br />
-          <div style="margin-bottom:2em;">
-
-            <div style="float:left">
-              <h1>Concrete Entities</h1>
-              <textarea id="scenario-data" rows="12" style="width:840px"></textarea>
-              <p style="width:840px; padding-right:10px;">
-                Concrete entities to simulate are linked to the entity category in the Signal Graph (e.g. attacker) via the <code>skg:ConcreteEntity</code> property.
-              </p>
-            </div>
-
-            <div style="float:left">
-              <h1>Concrete Actions</h1>
-              <textarea id="scenarioactions-data" rows="12" style="width:840px">Loading...</textarea>
-              <p style="width:840px; padding-right:10px;">
-                Concrete actions to simulate are linked to the action category in the Signal Graph via the <code>skg:actionCategory</code> property. They are also associated with a particular room or item in the Building Graph via the <code>skg:concreteActsOn</code> property.
-              </p>
-            </div>
+          <div style="float:left">
+            <h1>Concrete Actions</h1>
+            <textarea id="scenarioactions-data" rows="12" style="width:840px">Loading...</textarea>
+            <p style="width:840px; padding-right:10px;">
+              Concrete actions to simulate are linked to the action category in the Signal Graph via the <code>skg:actionCategory</code> property. They are also associated with a particular room or item in the Building Graph via the <code>skg:concreteActsOn</code> property.
+            </p>
           </div>
-
-        <div style="float:left; clear:left;margin-right:10px;">
+        </div>
+        <div style="float:left; clear:left; margin-right:10px;">
           <h1 style="display: inline; margin-right:1em;">Simulation</h1>
           <button id="sim-btn" type="button" class="btn btn-success">Restart Simulation</button>
           <button id="simstop-btn" type="button" class="btn btn-warning">Stop Simulation</button>
           <br />
           <div style="border: solid 1px; position:relative;">
-          <div id="vis" style="width:1120px;height:1000px;position:relative;"></div>
+            <div id="vis" style="width:1120px; height:1000px; position:relative;"></div>
           </div>
         </div>
         <div style="float:left">
           <h1>Simulation Log</h1>
-          <textarea id="simlog-data" style="width:560px;height:450px"></textarea>
+          <textarea id="simlog-data" style="width:560px; height:450px"></textarea>
           <h1>Sensor Observations from Simulation</h1>
-          <textarea id="simobs-data" style="width:560px;height:500px;"></textarea>
+          <textarea id="simobs-data" style="width:560px; height:500px;"></textarea>
         </div>
         <p style="clear:both">The simulation is used to collect example Sensor Observations that could occur under a particular scenario. The observations are represented using the W3C <a href="https://www.w3.org/TR/vocab-ssn/" target="_blank">Semantic Sensor Network (SSN/SOSA)</a> ontology. In the next step, we will attempt to infer what took place given only the Sensor Observations (and our understanding of possible underlying causes of those signals specified in the Knowledge Graphs in the previous tab).</p>
         <div style="clear:both;text-align:right;">
@@ -170,29 +152,26 @@
         <p><small>(3D Model credits: <a href="https://skfb.ly/6sUFy">Generic passenger car pack</a> by Comrade1280 is licensed under <a href="http://creativecommons.org/licenses/by/4.0/"> Creative Commons Attribution</a>)</small></p>
       </div>
       <div class="tab-pane fade" id="pills-inference" role="tabpanel" aria-labelledby="pills-inference-tab">
-        <!-- <h1>Sensor Observations from Simulation</h1>
-        <textarea id="simobs-data" style="width:560px;height:500px;"></textarea> -->
         <h1>Bayesian Belief Network (Generated from Knowledge Graphs in Tab 1)</h1>
-
+        
         <p>A Bayesian Belief Network, shown below, was generated from Knowledge Graphs in Tab 1 (the specific simulation scenario selected in Tab 2 was <em>not</em> used in construction of the Bayesian Belief Network). The Bayesian Belief Network models the probability that an entity (if present) will perform an action, the probability that an action (if it occurs) will result in a signal, and a signal (if emitted) will be detected by a sensor (taking into account the distance of the sensor from the source, any barriers between the source and the sensor that may block the signal, and the sensitivity of the classifier).</p>
         
         <p>You can interactively condition the Bayesian Belief Network on a known observation by clicking on that value to fix (e.g. '1' or '0' in one of the node boxes).</p>
-                
         <br />
         <p><strong>Key:</strong> a_ = action, s_ = signal emitted due to action, r_ = received signal strength at location of sensor, d_ = detected signal (after classification)</p>
         <div style="width:100%; overflow-x:scroll">
           <svg id="bbn"></svg>
         </div>
-<p><small>(Bayesian Belief Network visualisation created using <a href="https://github.com/vangj/jsbayes-viz" target="_blank">jsbayes-viz</a>)</small></p>      
+        <p><small>(Bayesian Belief Network visualisation created using <a href="https://github.com/vangj/jsbayes-viz" target="_blank">jsbayes-viz</a>)</small></p>      
         <p>
-        We can attempt to infer what took place (in the simulation) given the Sensor Observations (at the bottom of Tab 2), by conditioning the Bayesian Belief Network on those observations. You will notice that the bottom nodes (representing our observations) become fixed, and that the nodes at the top (the posterior probability of entities being present or not) are updated given our observations. The inference is approximate, so the values may fluctuate slightly if rerunning the computation.</p>
-        <button id="infer-btn" type="button" class="btn btn-primary">Condition on Sensor Observations from Simulation</button>
-        <br />
-        <br />
-        <div id="prdisplay">Click above button to perform inference</div>
-
-<br />
-</div>
+          We can attempt to infer what took place (in the simulation) given the Sensor Observations (at the bottom of Tab 2), by conditioning the Bayesian Belief Network on those observations. You will notice that the bottom nodes (representing our observations) become fixed, and that the nodes at the top (the posterior probability of entities being present or not) are updated given our observations. The inference is approximate, so the values may fluctuate slightly if rerunning the computation.</p>
+          <button id="infer-btn" type="button" class="btn btn-primary">Condition on Sensor Observations from Simulation</button>
+          <br />
+          <br />
+          <div id="prdisplay">Click above button to perform inference</div>
+          <br />
+        </div>
+      </div>
     </div>
   </div>
 </body>
