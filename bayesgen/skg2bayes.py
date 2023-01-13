@@ -22,8 +22,15 @@ def _capitalise(s):
 
 
 def get_name(uriref):
-    return uriref.split('#')[-1]
-
+    # return part of URI after '#'
+    s = uriref.split('#')
+    if len(s) > 1:
+        return s[-1]
+    # or part after '/' if '#' not present
+    s = uriref.split('/')
+    if len(s) > 1:
+        return s[-1]
+    return uriref
 
 def extract_loc(g, inst):
     return Location(float(g.value(inst, POSE.x).value), float(g.value(inst, POSE.y).value), float(g.value(inst, POSE.z).value))
