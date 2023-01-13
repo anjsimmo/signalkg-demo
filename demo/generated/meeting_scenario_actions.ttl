@@ -3,7 +3,7 @@
 @prefix skg: <http://signalkg.visualmodel.org/skg#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-:concreteAction1 a skg:ConcreteAction ;
+:concreteAction4 a skg:ConcreteAction ;
     skg:actionCategory :movement ;
     skg:concreteActsOn :outdoors ;
     skg:endState [ pose:x 10.349298875611957 ;
@@ -15,7 +15,7 @@
             pose:z 0.0 ] ;
     skg:startTime "2022-06-28T10:00:00"^^xsd:dateTime .
 
-:concreteAction2 a skg:ConcreteAction ;
+:concreteAction5 a skg:ConcreteAction ;
     skg:actionCategory :breakWindow ;
     skg:concreteActsOn :window1 ;
     skg:endState [ pose:x 10.34318769896911 ;
@@ -27,7 +27,7 @@
             pose:z 0.0 ] ;
     skg:startTime "2022-06-28T10:00:05"^^xsd:dateTime .
 
-:concreteAction3 a skg:ConcreteAction ;
+:concreteAction6 a skg:ConcreteAction ;
     skg:actionCategory :carryWeaponKnife ;
     skg:concreteActsOn :conferenceRoom1 ;
     skg:endState [ pose:x 10.392077112111885 ;
@@ -39,7 +39,7 @@
             pose:z 0.0 ] ;
     skg:startTime "2022-06-28T10:00:15"^^xsd:dateTime .
 
-:concreteAction4 a skg:ConcreteAction ;
+:concreteAction7 a skg:ConcreteAction ;
     skg:actionCategory :carryCookingKnife ;
     skg:concreteActsOn :diningRoom1 ;
     skg:endState [ pose:x 5.136465199263859 ;
@@ -51,7 +51,7 @@
             pose:z 0.0 ] ;
     skg:startTime "2022-06-28T10:00:00"^^xsd:dateTime .
 
-:concreteAction5 a skg:ConcreteAction ;
+:concreteAction8 a skg:ConcreteAction ;
     skg:actionCategory :dropTray ;
     skg:concreteActsOn :diningRoom1 ;
     skg:endState [ pose:x 5.128826228460301 ;

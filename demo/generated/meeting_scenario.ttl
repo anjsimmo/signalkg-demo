@@ -2,13 +2,13 @@
 @prefix skg: <http://signalkg.visualmodel.org/skg#> .
 
 :attacker1 a skg:ConcreteEntity ;
-    skg:concretePerforms :concreteAction1,
-        :concreteAction2,
-        :concreteAction3 ;
+    skg:concretePerforms :concreteAction4,
+        :concreteAction5,
+        :concreteAction6 ;
     skg:entityCategory :attacker .
 
 :employee1 a skg:ConcreteEntity ;
-    skg:concretePerforms :concreteAction4,
-        :concreteAction5 ;
+    skg:concretePerforms :concreteAction7,
+        :concreteAction8 ;
     skg:entityCategory :employee .
 
