@@ -24,7 +24,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
     // });
     let stopfunc;
     var counter = 1;
-    var graphName = "generated/meeting.json";
+    //var graphName = "generated/meeting.json";
+    var graphName = "generated/realtime.json";
     var bayesgraph, bayesvizgraph, makeObsFunc;
 
     const logCallback = function(log, observations) {
@@ -107,9 +108,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
       });
     }
     
-    //loadDemo("data/smarthome.ttl", "data/smarthome_geo.ttl", "data/smarthome_scenario.ttl");
     loadBayes(graphName);
-    loadDemo("data/meeting.ttl", "data/meeting_sensors.ttl", "generated/building_geo.ttl");
+    //loadDemo("data/meeting.ttl", "data/meeting_sensors.ttl", "generated/building_geo.ttl");
+    loadDemo("data/realtime.ttl", "data/realtime_sensors.ttl", "generated/building_geo.ttl");
     
     const demoSelect = document.getElementById("demoSelect");
     demoSelect.addEventListener('change', (event) => {
@@ -134,6 +135,18 @@ window.addEventListener('DOMContentLoaded', (event) => {
       console.log('infer button clicked');
       //const obs = document.getElementById("simobs-data").value.split('\n');
       const obsttl = document.getElementById("simobs-data").value;
+      makeObsFunc(obsttl);
+    });
+
+    const inferRealtimeBtn = document.getElementById("infer-realtime-btn");
+    inferRealtimeBtn.addEventListener('click', (event) => {
+      console.log('infer realtime button clicked');
+      
+      // YOUR CODE HERE (fetch real time data from Firebase)
+      
+      // replace this with your own code (convert json to SSN standard
+      const obsttl = document.getElementById("simobs-data").value;
+
       makeObsFunc(obsttl);
     });
 

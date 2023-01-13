@@ -62,6 +62,7 @@
         <div style="width:1000px; margin: auto auto">
           Example Knowledge Graphs:
           <select id="demoSelect" class="form-select" style="width:1000px">
+            <option value="data/realtime.ttl data/realtime_sensors.ttl generated/building_geo.ttl" data-graph="generated/realtime.json">Smart Building Surveillance - Realtime Camera (object detection) only</option>
             <option value="data/meeting.ttl data/meeting_sensors.ttl generated/building_geo.ttl" data-graph="generated/meeting.json">Smart Building Surveillance - Microphone (acoustic detection) + Camera (object detection)</option>
             <option value="data/simple.ttl data/simple_sensors.ttl generated/building_geo.ttl" data-graph="generated/simple.json">Smart Building Surveillance - Microphone (acoustic detection) only</option>
             <option value="data/city.ttl data/city_sensors.ttl generated/city_geo.ttl" data-graph="generated/city.json">City Surveillance</option>
@@ -103,6 +104,7 @@
         <div style="width:1000px; margin: auto auto">
           Example Scenario to Simulate:
           <select id="demoScenarioSelect" class="form-select" style="width:1000px;">
+            <option value="generated/meeting_scenario_spy.ttl generated/meeting_scenario_spy_actions.ttl" data-applies-to-graphs="generated/realtime.json">Building - Attacker Spying</option>
             <option value="generated/meeting_scenario.ttl generated/meeting_scenario_actions.ttl" data-applies-to-graphs="generated/meeting.json generated/simple.json">Building - Attacker and Employee</option>
             <option value="generated/meeting_scenario_emp.ttl generated/meeting_scenario_emp_actions.ttl" data-applies-to-graphs="generated/meeting.json generated/simple.json">Building - Employee only</option>
             <option value="generated/meeting_scenario_attack.ttl generated/meeting_scenario_attack_actions.ttl" data-applies-to-graphs="generated/meeting.json generated/simple.json">Building - Attacker only</option>
@@ -166,6 +168,7 @@
         <p>
           We can attempt to infer what took place (in the simulation) given the Sensor Observations (at the bottom of Tab 2), by conditioning the Bayesian Belief Network on those observations. You will notice that the bottom nodes (representing our observations) become fixed, and that the nodes at the top (the posterior probability of entities being present or not) are updated given our observations. The inference is approximate, so the values may fluctuate slightly if rerunning the computation.</p>
           <button id="infer-btn" type="button" class="btn btn-primary">Condition on Sensor Observations from Simulation</button>
+          <button id="infer-realtime-btn" type="button" class="btn btn-primary">Condition on Realtime Sensor Observations</button>
           <br />
           <br />
           <div id="prdisplay">Click above button to perform inference</div>
