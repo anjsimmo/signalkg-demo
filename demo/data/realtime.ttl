@@ -12,36 +12,56 @@
   a skg:Entity ;
   skg:prExists 0.5 ;
   skg:performs :movement ;
-  skg:performs :carryMobilePhone ;
+  skg:performs :carryCellPhone ;
   skg:performs :carryWeaponKnife ;
 .
+
+:student
+  a skg:Entity ;
+  skg:prExists 0.5 ;
+  skg:performs :movement ;
+  skg:performs :carryCellPhone ;
+  skg:performs :carryWeaponKnife ;
+  skg:performs :carryFork ;
+.
+
 :movement
   a skg:Action ;
   skg:actsOn building:DiningRoom ;
   skg:prOccurs 0.5 ;
-  skg:creates :visiblePerson ;
+  skg:creates :person ;
 .
-:carryMobilePhone
+:carryCellPhone
   a skg:Action ;
   skg:actsOn building:DiningRoom ;
   skg:prOccurs 0.5 ;
-  skg:creates :visibleMobilePhone ;
+  skg:creates :cellphone ;
 .
 :carryWeaponKnife
   a skg:Action ;
   skg:actsOn building:DiningRoom ;
   skg:prOccurs 0.5 ;
-  skg:creates :visibleKnife ;
+  skg:creates :knife ;
 .
-:visiblePerson
+:carryFork
+  a skg:Action ;
+  skg:actsOn building:DiningRoom ;
+  skg:prOccurs 0.5 ;
+  skg:creates :fork ;
+.
+:person
   a skg:Signal ;
   skos:broader :visibleObject ;
 .
-:visibleMobilePhone
+:cellphone
   a skg:Signal ;
   skos:broader :visibleObject ;
 .
-:visibleKnife
+:knife
+  a skg:Signal ;
+  skos:broader :visibleObject ;
+.
+:fork
   a skg:Signal ;
   skos:broader :visibleObject ;
 .
