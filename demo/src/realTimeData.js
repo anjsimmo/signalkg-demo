@@ -4,7 +4,6 @@ import { ref, onValue } from "firebase/database";
 const realTimeData = (makeObsFunc) => {
   // Array to store data from firebase
   let objectData = [];
-  // let objectNTripleData = [];
   let objectTurtleTerseRDFData = [];
 
   // firebase useEffect to fetch data
@@ -32,26 +31,9 @@ const realTimeData = (makeObsFunc) => {
     });
 
     objectData = newObjects;
-    // convertToNTriple(objectData);
     convertToTurtleTerseRDF(objectData);
-
-    // showObjectNTripleData();
-    // showObjectTurtleTerseRDFData();
     showTotalObjectTurtleTerseRDFData();
   });
-
-  // Convert to N-Triple
-  // function convertToNTriple(Data) {
-  //   let nTripleData = [];
-  //   Data.forEach((data) => {
-  //     nTripleData.push(
-  //       `<http://signalkg.visualmodel.org/demo#observation1> <http://www.w3.org/ns/sosa/observedProperty> <http://signalkg.visualmodel.org/demo#${data.name}>`
-  //     );
-  //   });
-  //   objectNTripleData = nTripleData;
-  // }
-
-  // convertToNTriple(objectData);
 
   // Convert to Turtle Terse RDF
   function convertToTurtleTerseRDF(Data) {
@@ -73,40 +55,8 @@ const realTimeData = (makeObsFunc) => {
 
   convertToTurtleTerseRDF(objectData);
 
-  // Show objectNTripleData
-  // function showObjectNTripleData() {
-  //   console.log("objectNTripleData");
-  //   {
-  //     objectNTripleData.map((object, index) => {
-  //       {
-  //         console.log("index", index);
-  //       }
-  //       {
-  //         console.log("object", object);
-  //       }
-  //     });
-  //   }
-  // }
-
-  // Show objectTurtleTerseRDFData
-  // function showObjectTurtleTerseRDFData() {
-  //   console.log("objectTurtleTerseRDFData");
-  //   {
-  //     objectTurtleTerseRDFData.map((object, index) => {
-  //       {
-  //         console.log("index", index);
-  //       }
-  //       {
-  //         console.log("object", object);
-  //       }
-  //     });
-  //   }
-  // }
-
   // Show totalObjectTurtleTerseRDFData for inference from a last minute
   function showTotalObjectTurtleTerseRDFData() {
-    console.log("Show objectTurtleTerseRDFData");
-
     var prefixRDFTurtle = `
       @prefix : <http://signalkg.visualmodel.org/demo#> .
       @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
@@ -114,13 +64,9 @@ const realTimeData = (makeObsFunc) => {
 
     var totalObjectTurtleTerseRDFData = prefixRDFTurtle + "\n";
 
-    {
-      objectTurtleTerseRDFData.map((object) => {
-        totalObjectTurtleTerseRDFData += object;
-      });
-    }
-
-    console.log(totalObjectTurtleTerseRDFData);
+    objectTurtleTerseRDFData.map((object) => {
+      totalObjectTurtleTerseRDFData += object;
+    });
 
     makeObsFunc(totalObjectTurtleTerseRDFData);
   }
