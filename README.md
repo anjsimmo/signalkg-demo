@@ -23,6 +23,7 @@ cd demo; npm install
 To rebuild everything, run `./build.sh`
 
 If you just want to build the web demo:
+
 ```
 cd demo
 npm run build
@@ -30,30 +31,53 @@ npm run build
 
 ## Adding a new knowledge graphs
 
-* Place the new knowledge graphs in the `demo/data/` directory.
-* Run `bayesgen/skg2bayes.py` to generate a Bayesian network from the knowledge graphs. See `build.sh` for examples.
-* Add the knowledge graphs to the `demoSelect` select box in `index.html`.
-  * Set the `value=` property to the path to the signal graph, sensor graph, and building graph (space separated).
-  * Set the `data-graph=` property to the generated Bayesian network.
+- Place the new knowledge graphs in the `demo/data/` directory.
+- Run `bayesgen/skg2bayes.py` to generate a Bayesian network from the knowledge graphs. See `build.sh` for examples.
+- Add the knowledge graphs to the `demoSelect` select box in `index.html`.
+  - Set the `value=` property to the path to the signal graph, sensor graph, and building graph (space separated).
+  - Set the `data-graph=` property to the generated Bayesian network.
 
 ## Adding a new scenario
 
-* Place new concrete entities and concrete actions files for the scenario in the `demo/data/` directory.
-* Add the scenario to the `demoScenarioSelect` select box in `index.html`.
-  * Set the `value=` property to the path to the concrete entities and concrete action files (space separated).
-  * Set the `data-applies-to-graphs=` property to the Bayesian network for the graph the scenario should be listed for (space separated if the scenario should be listed for multiple graphs)
+- Place new concrete entities and concrete actions files for the scenario in the `demo/data/` directory.
+- Add the scenario to the `demoScenarioSelect` select box in `index.html`.
+  - Set the `value=` property to the path to the concrete entities and concrete action files (space separated).
+  - Set the `data-applies-to-graphs=` property to the Bayesian network for the graph the scenario should be listed for (space separated if the scenario should be listed for multiple graphs)
+
+## Using Realtime sensor observations
+
+To use the realtime branch, run:
+
+```
+git branch
+git checkout realtime
+git branch
+```
+
+Install Python firebase (if not installed or updated to latest version):
+
+`npm install --save firebase`
+
+How to use your own firebase realtime database:
+
+- Go to "Project Setting" of your Firebase Realtime Database
+- Create Web App
+- Copy your firebaseConfig and paste it into firebase.js
+
+This realtime branch is a frontend part of the "Fusing Heterogenous Sensor Data" project.
+The backend part of this project could be found [here](https://github.com/Chanputhi/Fusing-Heterogeneous-Sensor-Data/tree/main).
 
 ## Convenience scripts
 
-* To make specification of building graphs and scenarios easier, scripts are available to extract the information from GeoJSON files and convert this to ttl. See `build.sh` for examples.
+- To make specification of building graphs and scenarios easier, scripts are available to extract the information from GeoJSON files and convert this to ttl. See `build.sh` for examples.
 
 ## Limitations
 
-* The knowledge graphs in the interactive demo are currently read only, as we would need to rerun the Python scripts to regenerate the Bayesian network if they were modified. Future work would be to create a REST service to perform the conversion, or to port the Python scripts to node.
-* When generating the Bayesian networks, only the name (the part of the URI after the `#`) is used rather than the full URI. This leads to more convenient names, but may result in errors if there are naming conflicts. Future work would be to use the full URI consistently throughout the entire pipeline.
-* Simulated scenarios are assumed to start at 2022-06-28T10:00:00. Modify `SIM_START_DATETIME` in `vis.js` to change this. Future work would be to implement time controls, or to automatically extract the start time from the scenario files.
+- The knowledge graphs in the interactive demo are currently read only, as we would need to rerun the Python scripts to regenerate the Bayesian network if they were modified. Future work would be to create a REST service to perform the conversion, or to port the Python scripts to node.
+- When generating the Bayesian networks, only the name (the part of the URI after the `#`) is used rather than the full URI. This leads to more convenient names, but may result in errors if there are naming conflicts. Future work would be to use the full URI consistently throughout the entire pipeline.
+- Simulated scenarios are assumed to start at 2022-06-28T10:00:00. Modify `SIM_START_DATETIME` in `vis.js` to change this. Future work would be to implement time controls, or to automatically extract the start time from the scenario files.
 
 ## License
 
-* Code is shared under the MIT License.
-* The 3D model of a car is extracted from [Generic passenger car pack](https://skfb.ly/6sUFy) by Comrade1280 licensed under [Creative Commons Attribution](http://creativecommons.org/licenses/by/4.0/).
+- Code is shared under the MIT License.
+- The 3D model of a car is extracted from [Generic passenger car pack](https://skfb.ly/6sUFy) by Comrade1280 licensed under [Creative Commons Attribution](http://creativecommons.org/licenses/by/4.0/).
