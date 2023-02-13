@@ -2,6 +2,7 @@
   "dependencies": {
     "assert": "^2.0.0",
     "buffer": "^6.0.3",
+    "firebase": "^9.17.1",
     "jsbayes-viz": "^0.0.7",
     "rdflib": "^2.2.19",
     "three": "^0.142.0"

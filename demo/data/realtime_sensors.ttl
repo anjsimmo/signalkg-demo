@@ -11,9 +11,10 @@
 
 :cam0 a sosa:Sensor ;
     ssn:implements :yolo ;
-    sosa:observes :visiblePerson ;
-    sosa:observes :visibleMobilePhone ;
-    sosa:observes :visibleKnife ;
+    sosa:observes :person ;
+    sosa:observes :cellphone ;
+    sosa:observes :knife ;
+    sosa:observes :fork ;
     pose:x 2.0 ;
     pose:y -4.0 ;
     pose:z 1.0 ;
