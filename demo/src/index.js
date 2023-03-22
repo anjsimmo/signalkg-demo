@@ -28,6 +28,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
   //var graphName = "generated/meeting.json";
   var graphName = "generated/realtime.json";
   var bayesgraph, bayesvizgraph, makeObsFunc;
+  var obsmode = "sim";
 
   const logCallback = function (log, observations) {
     document.getElementById("simlog-data").value += log;
@@ -148,30 +149,44 @@ window.addEventListener("DOMContentLoaded", (event) => {
     //loadDemo(sigttl, mapttl, scenariottl);
   });
 
+  function getObs() {
+    if (obsmode === "realtime") {
+      return document.getElementById("realtimeobs-data").value;
+    } else {
+      return document.getElementById("simobs-data").value;
+    }
+  }
+
   const inferBtn = document.getElementById("infer-btn");
   inferBtn.addEventListener("click", (event) => {
     console.log("infer button clicked");
     //const obs = document.getElementById("simobs-data").value.split('\n');
-    const obsttl = document.getElementById("simobs-data").value;
+    const obsttl = getObs();
     makeObsFunc(obsttl);
   });
 
+  
+  function updateRealtimeData(ttl) {
+    document.getElementById("realtimeobs-data").value = ttl;
+  }
+
   ////////////////////////////////////////////////////////////
   // Write code here to fetch real time data from Firebase//
-  const inferRealtimeBtn = document.getElementById("infer-realtime-btn");
-  inferRealtimeBtn.addEventListener("click", (event) => {
+  const updateRealtimeBtn = document.getElementById("update-realtime-btn");
+  updateRealtimeBtn.addEventListener("click", (event) => {
     console.log("infer realtime button clicked");
 
     // YOUR CODE HERE (fetch real time data from Firebase)////
-    realTimeData(makeObsFunc);
+    realTimeData(updateRealtimeData);
   });
   ////////////////////////////////////////////////////////////
 
   let prevGraphName = undefined;
-  const tabEl = document.querySelector(
-    '#pills-tab button[data-bs-target="#pills-sim"]'
+  const simTabEl = document.querySelector(
+    '#pills-sim-tab'
   );
-  tabEl.addEventListener("show.bs.tab", (event) => {
+  simTabEl.addEventListener("show.bs.tab", (event) => {
+    obsmode = "sim";
     if (graphName !== prevGraphName) {
       // disable/enable scenario options for this graph
       for (const option of document.getElementById("demoScenarioSelect")
@@ -194,6 +209,13 @@ window.addEventListener("DOMContentLoaded", (event) => {
       );
       prevGraphName = graphName;
     }
+  });
+  
+  const realtimeTabEl = document.querySelector(
+    '#pills-realtime-tab'
+  );
+  realtimeTabEl.addEventListener("show.bs.tab", (event) => {
+    obsmode = "realtime";
   });
 
   function updatetextAndRestartSim(uri1, uri2, id1, id2) {

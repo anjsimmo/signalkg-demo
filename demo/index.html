@@ -44,13 +44,22 @@
         anjsimmo/signalkg-demo
       </a>
     </div>
-    
+
     <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
       <li class="nav-item" role="presentation">
         <button class="nav-link active" id="pills-kg-tab" data-bs-toggle="pill" data-bs-target="#pills-kg" type="button" role="tab" aria-controls="pills-kg" aria-selected="true">1. Knowledge Graphs</button>
       </li>
       <li class="nav-item" role="presentation">
-        <button class="nav-link" id="pills-sim-tab" data-bs-toggle="pill" data-bs-target="#pills-sim" type="button" role="tab" aria-controls="pills-sim" aria-selected="false">2. Simulate Sensor Observations</button>
+        <!-- <button class="nav-link" id="pills-sim-tab" data-bs-toggle="pill" data-bs-target="#pills-sim" type="button" role="tab" aria-controls="pills-sim" aria-selected="false">2. Simulate Sensor Observations</button> -->
+        <div class="dropdown">
+          <a class="btn btn-secondary dropdown-toggle nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            2. Sensor Observations
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#" id="pills-sim-tab" data-bs-toggle="pill" data-bs-target="#pills-sim" type="button" role="tab" aria-controls="pills-sim">Simulate Sensor Observations</a></li>
+            <li><a class="dropdown-item" href="#" id="pills-realtime-tab" data-bs-toggle="pill" data-bs-target="#pills-realtime" type="button" role="tab" aria-controls="pills-realtime">Realtime Sensor Observations</a></li>
+          </ul>
+        </div>
       </li>
       <li class="nav-item" role="presentation">
         <button class="nav-link" id="pills-inference-tab" data-bs-toggle="pill" data-bs-target="#pills-inference" type="button" role="tab" aria-controls="pills-inference" aria-selected="false">3. Inference</button>
@@ -98,6 +107,12 @@
         </div>
         <div style="clear:both;text-align:right;">
           <button type="button" class="btn btn-success" onclick="document.getElementById('pills-sim-tab').click();">Next Tab &gt;</button>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="pills-realtime" role="tabpanel" aria-labelledby="pills-realtime-tab">
+        <div style="width:1000px; margin: auto auto">
+          <button id="update-realtime-btn" type="button" class="btn btn-primary">Stream Realtime Sensor Observations</button><br />
+          <textarea id="realtimeobs-data" style="width:560px; height:800px;"></textarea>
         </div>
       </div>
       <div class="tab-pane fade" id="pills-sim" role="tabpanel" aria-labelledby="pills-sim-tab">
@@ -167,8 +182,7 @@
         <p><small>(Bayesian Belief Network visualisation created using <a href="https://github.com/vangj/jsbayes-viz" target="_blank">jsbayes-viz</a>)</small></p>      
         <p>
           We can attempt to infer what took place (in the simulation) given the Sensor Observations (at the bottom of Tab 2), by conditioning the Bayesian Belief Network on those observations. You will notice that the bottom nodes (representing our observations) become fixed, and that the nodes at the top (the posterior probability of entities being present or not) are updated given our observations. The inference is approximate, so the values may fluctuate slightly if rerunning the computation.</p>
-          <button id="infer-btn" type="button" class="btn btn-primary">Condition on Sensor Observations from Simulation</button>
-          <button id="infer-realtime-btn" type="button" class="btn btn-primary">Condition on Realtime Sensor Observations</button>
+          <button id="infer-btn" type="button" class="btn btn-primary">Condition on Sensor Observations</button>
           <br />
           <br />
           <div id="prdisplay">Click above button to perform inference</div>
