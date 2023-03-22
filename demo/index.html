@@ -62,7 +62,16 @@
         </div>
       </li>
       <li class="nav-item" role="presentation">
-        <button class="nav-link" id="pills-inference-tab" data-bs-toggle="pill" data-bs-target="#pills-inference" type="button" role="tab" aria-controls="pills-inference" aria-selected="false">3. Inference</button>
+        <!-- <button class="nav-link" id="pills-inference-tab" data-bs-toggle="pill" data-bs-target="#pills-inference" type="button" role="tab" aria-controls="pills-inference" aria-selected="false">3. Inference</button> -->
+        <div class="dropdown">
+          <a class="btn btn-secondary dropdown-toggle nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            3. Inference
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#" id="pills-inference-tab" data-bs-toggle="pill" data-bs-target="#pills-inference" type="button" role="tab" aria-controls="pills-inference">Bayesian</a></li>
+            <li><a class="dropdown-item" href="#" id="pills-llm-tab" data-bs-toggle="pill" data-bs-target="#pills-llm" type="button" role="tab" aria-controls="pills-llm">LLM</a></li>
+          </ul>
+        </div>
       </li>
     </ul>
     
@@ -181,11 +190,23 @@
         </div>
         <p><small>(Bayesian Belief Network visualisation created using <a href="https://github.com/vangj/jsbayes-viz" target="_blank">jsbayes-viz</a>)</small></p>      
         <p>
-          We can attempt to infer what took place (in the simulation) given the Sensor Observations (at the bottom of Tab 2), by conditioning the Bayesian Belief Network on those observations. You will notice that the bottom nodes (representing our observations) become fixed, and that the nodes at the top (the posterior probability of entities being present or not) are updated given our observations. The inference is approximate, so the values may fluctuate slightly if rerunning the computation.</p>
+          We can attempt to infer what took place given the Sensor Observations (at the bottom of Tab 2) by conditioning the Bayesian Belief Network on those observations. You will notice that the bottom nodes (representing our observations) become fixed, and that the nodes at the top (the posterior probability of entities being present or not) are updated given our observations. The inference is approximate, so the values may fluctuate slightly if rerunning the computation.</p>
           <button id="infer-btn" type="button" class="btn btn-primary">Condition on Sensor Observations</button>
           <br />
           <br />
           <div id="prdisplay">Click above button to perform inference</div>
+          <br />
+        </div>
+      </div>
+      <div class="tab-pane fade" id="pills-llm" role="tabpanel" aria-labelledby="pills-llm-tab">
+        <h1>LLM</h1>
+        
+        <p>
+          We can attempt to infer what took place given the Sensor Observations (at the bottom of Tab 2) by converting the observations into a prompt for a Large Language Model (LLM).</p>
+          <button id="infer-btn-llm" type="button" class="btn btn-primary">Condition on Sensor Observations</button>
+          <br />
+          <br />
+          <div id="llmdisplay">Click above button to perform inference</div>
           <br />
         </div>
       </div>

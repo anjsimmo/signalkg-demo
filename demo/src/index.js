@@ -1,6 +1,7 @@
 import vis from "./vis.js";
 import { bayes, simulateAction } from "./bayes.js";
 import { realTimeData } from "./realTimeData.js";
+import { makeObsLLM } from "./llm.js";
 
 window.addEventListener("DOMContentLoaded", (event) => {
   // const signalKGSourceElement = document.getElementById("signalkg-source");
@@ -165,7 +166,15 @@ window.addEventListener("DOMContentLoaded", (event) => {
     makeObsFunc(obsttl);
   });
 
-  
+  const inferBtnLLM = document.getElementById("infer-btn-llm");
+  inferBtnLLM.addEventListener("click", (event) => {
+    console.log("LLM infer button clicked");
+    //const obs = document.getElementById("simobs-data").value.split('\n');
+    const obsttl = getObs();
+    
+    makeObsLLM(obsttl);
+  });
+    
   function updateRealtimeData(ttl) {
     document.getElementById("realtimeobs-data").value = ttl;
   }

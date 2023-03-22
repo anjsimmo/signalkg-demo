@@ -67,6 +67,19 @@ How to use your own firebase realtime database:
 This realtime branch is a frontend part of the "Fusing Heterogenous Sensor Data" project.
 The backend part of this project could be found [here](https://github.com/Chanputhi/Fusing-Heterogeneous-Sensor-Data/tree/main).
 
+
+## Using LLM inference
+
+Create a file called `secrets.js` containing your Open-AI key
+
+```
+export {
+  key
+}
+
+const key = "<YOUR OPEN-API KEY HERE>";
+```
+
 ## Convenience scripts
 
 - To make specification of building graphs and scenarios easier, scripts are available to extract the information from GeoJSON files and convert this to ttl. See `build.sh` for examples.
