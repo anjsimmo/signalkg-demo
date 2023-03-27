@@ -172,7 +172,10 @@ window.addEventListener("DOMContentLoaded", (event) => {
     //const obs = document.getElementById("simobs-data").value.split('\n');
     const obsttl = getObs();
     
-    makeObsLLM(obsttl);
+    const sensorkg = document.getElementById("sensor-data").value;
+    const map = document.getElementById("map-data").value;
+
+    makeObsLLM(obsttl, sensorkg, map);
   });
     
   function updateRealtimeData(ttl) {

@@ -10,30 +10,20 @@ export {
 const RDF = Namespace("http://www.w3.org/1999/02/22-rdf-syntax-ns#");
 const RDFS = Namespace("http://www.w3.org/2000/01/rdf-schema#");
 const XSD = Namespace("http://www.w3.org/2001/XMLSchema#");
+const SIGNAL = Namespace("http://signalkg.visualmodel.org/skg#");
+const POSE = Namespace("http://signalkg.visualmodel.org/pose#");
+const BUILDING = Namespace("https://w3id.org/rec/building/");
+const ASSET = Namespace("https://w3id.org/rec/asset/");
 const SOSA = Namespace("http://www.w3.org/ns/sosa/");
 
 function getName(uri) {
-  return uri.split('#').at(-1);
+  // take last part of URI after # or /
+  return uri.split(/#|\//).at(-1);
 }
 
-function getSimplifiedNodeName(nodename) {
-  if (nodename.endsWith("_action")) {
-    const parts = nodename.split('_');
-    return 'a_' + parts[1] + '_' + parts[2];
-  }
-  if (nodename.split("_").at(-2) === "signal") {
-    const parts = nodename.split('_');
-    return 's_' + parts[5] + '_' + parts[2];
-  }
-  if (nodename.endsWith("strength")) {
-    const parts = nodename.split('_');
-    return 'r_' + parts[5] + '_' + parts[2];
-  }
-  if (nodename.startsWith("det")) {
-    const parts = nodename.split('_');
-    return 'd_' + parts[1] + '_' + parts[2];
-  }
-  return nodename;
+function camelCaseToWords(str) {
+  // https://stackoverflow.com/questions/4514144/js-string-split-without-removing-the-delimiters
+  return str.split(/(?=[A-Z])/).join(" ").toLowerCase();
 }
 
 const configuration = new Configuration({
@@ -41,7 +31,65 @@ const configuration = new Configuration({
 });
 const openai = new OpenAIApi(configuration);
 
-function makeObsLLM(obsttl) {
+function reprSensor(mapStore, sensor) {
+  const x = parseFloat(mapStore.any(sensor, POSE('x'), undefined).value);
+  const y = parseFloat(mapStore.any(sensor, POSE('y'), undefined).value);
+  const z = parseFloat(mapStore.any(sensor, POSE('z'), undefined).value);
+  const pitch = parseFloat(mapStore.any(sensor, POSE('pitch'), undefined).value);
+  const roll = parseFloat(mapStore.any(sensor, POSE('roll'), undefined).value);
+  const yaw = parseFloat(mapStore.any(sensor, POSE('yaw'), undefined).value);
+  
+  // const geometry = new THREE.CylinderGeometry( 0, SENSOR_RADIUS, SENSOR_THICKNESS, 32);
+  // const mesh = new THREE.Mesh( geometry, material );
+  // mesh.position.set( x, y, z );
+  // mesh.rotation.set( roll, pitch, yaw + Math.PI/2);
+  // scene.add( mesh );
+
+  // const geometry = new THREE.BoxGeometry( SENSOR_THICKNESS, SENSOR_WIDTH, SENSOR_HEIGHT, 32);
+  // const mesh = new THREE.Mesh( geometry, material );
+  
+  // const lensGeometry = new THREE.CylinderGeometry( 0, SENSOR_RADIUS, SENSOR_THICKNESS, 32);
+  // const lensMesh = new THREE.Mesh( lensGeometry, material );
+  // lensMesh.rotation.set( 0, 0, Math.PI/2 );
+  // lensMesh.position.set( SENSOR_THICKNESS/2, 0, 0 );
+  // mesh.add( lensMesh );
+  
+  // https://github.com/mrdoob/three.js/blob/master/examples/css2d_label.html
+
+
+  const sensorName = getName(sensor.uri)
+  const sensorType = mapStore.each(sensor, RDF('type')).map(s => camelCaseToWords(getName(s.uri))).join(" and ");
+  
+  // find closest named area / room
+  const dists = [];
+  var areas1 = mapStore.each(undefined, RDF('type'), BUILDING('DiningRoom'));
+  console.log(areas1);
+  var areas2 = mapStore.each(undefined, RDF('type'), BUILDING('ConferenceRoom'));
+  console.log(areas2);
+  const areas = areas1.concat(areas2);
+  console.log(areas);
+  for (const area of areas) {
+    const area_x = parseFloat(mapStore.any(area, POSE('x'), undefined).value);
+    const area_y = parseFloat(mapStore.any(area, POSE('y'), undefined).value);
+    const area_z = parseFloat(mapStore.any(area, POSE('z'), undefined).value);
+    const dist = Math.sqrt((area_x - x)**2 + (area_y - y)**2 + (area_z - z)**2);
+    dists.push([dist, area]);
+  }
+  dists.sort((a, b) => a[0] - b[0]);
+  var sensorLoc = "unknown location";
+  console.log(dists)
+  if (dists.length > 0) {
+    sensorLoc = camelCaseToWords(getName(mapStore.any(dists[0][1], RDF('type')).uri));
+  }
+
+  return `${sensorName} is a ${sensorType} located in a ${sensorLoc}.`;
+  // console.log("sensor", x, y, z, pitch, roll, yaw);
+
+  // scene.add( mesh );
+}
+
+function makeObsLLM(obsttl, sensorkg, map) {
+  // todo: pass sensorkg, map
   let obsStore = $rdf.graph();
   try {
     $rdf.parse(obsttl, obsStore, window.location.href, 'text/turtle');
@@ -49,18 +97,55 @@ function makeObsLLM(obsttl) {
     console.log(err);
   }
   
-  var obstext = [];
+  // convert sensor locations to text
+  // adapted from vis.js
+  let combinedStore = $rdf.graph();
+  // try {
+  //     $rdf.parse(signalkg, combinedStore, window.location.href, 'text/turtle');
+  // } catch (err) {
+  //     console.log(err);
+  // }
+  try {
+      $rdf.parse(sensorkg, combinedStore, window.location.href, 'text/turtle');
+  } catch (err) {
+      console.log(err);
+  }
+  try {
+      $rdf.parse(map, combinedStore, window.location.href, 'text/turtle');
+  } catch (err) {
+      console.log(err);
+  }
+  // try {
+  //     $rdf.parse(scenario, combinedStore, window.location.href, 'text/turtle');
+  // } catch (err) {
+  //     console.log(err);
+  // }
+  // try {
+  //     $rdf.parse(scenarioactions, combinedStore, window.location.href, 'text/turtle');
+  // } catch (err) {
+  //     console.log(err);
+  // }
   
+  var prompt = "";
+  
+  var sensors = combinedStore.each(undefined, RDF('type'), SOSA('Sensor'));
+  for (const sensor of sensors) {
+      prompt += reprSensor(combinedStore, sensor) + " "
+  }
+  console.log(`new prompt is {prompt}`)
+  console.log(sensors)
+  
+  // convert sensor observations to text
+  var obstext = [];
   var obs = obsStore.each(undefined, RDF('type'), SOSA('Observation'));
   for (const ob of obs) {
     const sig = obsStore.any(ob, SOSA('observedProperty'), undefined);
     const sensor = obsStore.any(ob, SOSA('madeBySensor'), undefined);
-    const sig_shortname = getName(sig.uri);
+    const sig_shortname = camelCaseToWords(getName(sig.uri));
     const sensor_shortname = getName(sensor.uri);
-    obstext.push(`${sensor_shortname} detected ${sig_shortname}. `);
+    obstext.push(`${sensor_shortname} detected a ${sig_shortname}. `);
   }
 
-  var prompt = "";
   for (const o of obstext) {
     prompt += o;
   }
@@ -91,12 +176,19 @@ function makeObsLLM(obsttl) {
     logs += "\n\n\nRESPONSE: " + content;
     
     var result = "GREY";
-    if (content.toLowerCase().includes("red")) {
-      result = "RED";
-    } else if (content.toLowerCase().includes("orange")) {
-      result = "ORANGE";
-    } else if (content.toLowerCase().includes("green")) {
-      result = "GREEN";
+    
+    window.globContent = content;
+    
+    const matches = content.toLowerCase().match(/\b(red|orange|green|grey)\b/);
+    if (matches.length > 0) {
+      const lastColor = matches.at(-1);
+      if (lastColor === "red") {
+        result = "RED";
+      } else if (lastColor === "orange") {
+        result = "ORANGE";
+      } else if (lastColor === "green") {
+        result = "GREEN";
+      }
     }
     
     logs += "\n\n\nCLASSIFICATION: " + result;
