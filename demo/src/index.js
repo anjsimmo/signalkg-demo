@@ -174,8 +174,9 @@ window.addEventListener("DOMContentLoaded", (event) => {
     
     const sensorkg = document.getElementById("sensor-data").value;
     const map = document.getElementById("map-data").value;
+    const gptVersion = document.getElementById("gpt-version").value;
 
-    makeObsLLM(obsttl, sensorkg, map);
+    makeObsLLM(obsttl, sensorkg, map, gptVersion);
   });
     
   function updateRealtimeData(ttl) {

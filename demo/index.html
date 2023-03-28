@@ -200,9 +200,16 @@
       </div>
       <div class="tab-pane fade" id="pills-llm" role="tabpanel" aria-labelledby="pills-llm-tab">
         <h1>LLM</h1>
-        
+
         <p>
           We can attempt to infer what took place given the Sensor Observations (at the bottom of Tab 2) by converting the observations into a prompt for a Large Language Model (LLM).</p>
+
+          Select LLM used to perform inference:
+          <select class="form-select" aria-label="Default select example" id="gpt-version" style="width:200px">
+            <option selected value="gpt-4">gpt-4</option>
+            <option value="gpt-3.5-turbo">gpt-3.5-turbo</option>
+          </select>
+          <br />
           <button id="infer-btn-llm" type="button" class="btn btn-primary">Condition on Sensor Observations</button>
           <br />
           <br />

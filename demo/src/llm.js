@@ -88,7 +88,7 @@ function reprSensor(mapStore, sensor) {
   // scene.add( mesh );
 }
 
-function makeObsLLM(obsttl, sensorkg, map) {
+function makeObsLLM(obsttl, sensorkg, map, gptVersion) {
   // todo: pass sensorkg, map
   let obsStore = $rdf.graph();
   try {
@@ -162,7 +162,7 @@ function makeObsLLM(obsttl, sensorkg, map) {
   
   // Treat an async function as if it was a promise
   openai.createChatCompletion({
-    model: "gpt-3.5-turbo",
+    model: gptVersion,
     messages: [
       {"role": "user", "content": prompt}
       // {"role": "user", "content": "An unidentified person is seen entering a building. They are seen carrying a lighter and fuel. Later the smoke alarm in the building goes off. What is the most likely cause? Answer step by step"}
@@ -173,14 +173,14 @@ function makeObsLLM(obsttl, sensorkg, map) {
     const content = response["data"]["choices"][0]["message"]["content"];
     console.log(content);
     
-    logs += "\n\n\nRESPONSE: " + content;
+    logs += "\n\n\nRESPONSE:\n" + content;
     
     var result = "GREY";
     
     window.globContent = content;
     
-    const matches = content.toLowerCase().match(/\b(red|orange|green|grey)\b/);
-    if (matches.length > 0) {
+    const matches = content.toLowerCase().match(/\b(red|orange|green|grey)\b/g);
+    if (matches) {
       const lastColor = matches.at(-1);
       if (lastColor === "red") {
         result = "RED";
