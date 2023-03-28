@@ -164,6 +164,7 @@ function makeObsLLM(obsttl, sensorkg, map, gptVersion) {
   openai.createChatCompletion({
     model: gptVersion,
     messages: [
+      {"role": "system", "content": "You are an intelligence officer. Reason about the cause of sensor observations to determine the level of threat."},
       {"role": "user", "content": prompt}
       // {"role": "user", "content": "An unidentified person is seen entering a building. They are seen carrying a lighter and fuel. Later the smoke alarm in the building goes off. What is the most likely cause? Answer step by step"}
     ]
