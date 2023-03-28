@@ -172,9 +172,13 @@ async function bayes(graphName) {
     for (const ob of obs) {
       const sig = obsStore.any(ob, SOSA('observedProperty'), undefined);
       const sensor = obsStore.any(ob, SOSA('madeBySensor'), undefined);
-      const sig_shortname = getName(sig.uri);
-      const sensor_shortname = getName(sensor.uri);
-      obsnames.push(getSimplifiedNodeName(`det_${sensor_shortname}_${sig_shortname}`));
+      if (sig && sensor) {
+        const sig_shortname = getName(sig.uri);
+        const sensor_shortname = getName(sensor.uri);
+        obsnames.push(getSimplifiedNodeName(`det_${sensor_shortname}_${sig_shortname}`));
+      } else {
+        console.log(`WARNING: signal/sensor was not found for ob ${ob}`);
+      }
     }
     var condMessages = [];
     for (var node of graph.nodes) {

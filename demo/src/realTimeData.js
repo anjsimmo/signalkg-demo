@@ -40,14 +40,16 @@ const realTimeData = (makeObsFunc) => {
     let turtleTerseRDFData = [];
     Data.forEach((data, index) => {
       data.name = data.name.replace(/ /g, "");
+      data.name = data.name.replace(/\W/g, "");
+      data.name = data.name.toLowerCase();
 
       turtleTerseRDFData.push(
         `:observation${index + 1}
           a sosa:Observation ;
           sosa:observedProperty :${data.name} ;
-          sosa:madeBySensor :cam0 ;
+          sosa:madeBySensor :${data.sensorId} ;
           sosa:hasSimpleResult true ;
-          sosa:resultTime "2022-06-28T00:00:05.000Z"^^xsd:dateTime . `
+          sosa:resultTime "${data.datetime}"^^xsd:dateTime . `
       );
     });
     objectTurtleTerseRDFData = turtleTerseRDFData;

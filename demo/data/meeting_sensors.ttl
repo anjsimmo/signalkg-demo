@@ -11,7 +11,7 @@
 
 :mic1 a sosa:Sensor;
     ssn:implements :yamNet ;
-    sosa:observes :soundOfGlass ;
+    sosa:observes :glass ;
     pose:x 13.0 ;
     pose:y -3.0 ;
     pose:z 1.0 ;
@@ -22,7 +22,7 @@
 
 :cam1 a sosa:Sensor ;
     ssn:implements :mobileNetV2 ;
-    sosa:observes :visibleKnife ;
+    sosa:observes :knife ;
     pose:x 13.0 ;
     pose:y -4.0 ;
     pose:z 1.0 ;
