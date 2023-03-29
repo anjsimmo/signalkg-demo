@@ -151,7 +151,7 @@ function makeObsLLM(obsttl, sensorkg, map, gptVersion) {
   }
   
   //prompt += "What is the most likely cause? Answer step by step";
-  prompt += "What is the level of threat? Answer step by step. Then respond 'green' if not a threat, 'orange' if low/medium threat, 'red' if high threat, or 'grey' if unsure.";
+  prompt += "What is the level of threat? Answer step by step. Then respond 'green' if not a threat, 'orange' if low/medium threat, 'red' if high threat, or 'grey' if uncertain.";
   
   console.log(prompt);
   
@@ -176,7 +176,7 @@ function makeObsLLM(obsttl, sensorkg, map, gptVersion) {
     
     logs += "\n\n\nRESPONSE:\n" + content;
     
-    var result = "GREY";
+    var result = "<span style='color:gray;font-weight:bold'>GREY</span> (uncertain)";
     
     window.globContent = content;
     
@@ -184,16 +184,17 @@ function makeObsLLM(obsttl, sensorkg, map, gptVersion) {
     if (matches) {
       const lastColor = matches.at(-1);
       if (lastColor === "red") {
-        result = "RED";
+        result = "<span style='color:red;font-weight:bold'>RED</span (high threat)>";
       } else if (lastColor === "orange") {
-        result = "ORANGE";
+        result = "<span style='color:orange;font-weight:bold'>ORANGE</span> (low/medium threat)";
       } else if (lastColor === "green") {
-        result = "GREEN";
+        result = "<span style='color:green;font-weight:bold'>GREEN</span> (not a threat)";
       }
     }
     
-    logs += "\n\n\nCLASSIFICATION: " + result;
+    //logs += "\n\n\nCLASSIFICATION: " + result;
     
     document.getElementById("llmdisplay").innerText = logs;
+    document.getElementById("llmresult").innerHTML = "\n\n\nCLASSIFICATION: " + result;;
   });
 };
