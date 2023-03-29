@@ -58,7 +58,14 @@ function reprSensor(mapStore, sensor) {
 
 
   const sensorName = getName(sensor.uri)
-  const sensorType = mapStore.each(sensor, RDF('type')).map(s => camelCaseToWords(getName(s.uri))).join(" and ");
+  var sensorType = mapStore.each(sensor, RDF('type')).map(s => camelCaseToWords(getName(s.uri))).join(" and ");
+  
+  // hack for mic and cams
+  // if (sensorName.startsWith("mic")) {
+  //   sensorType = "microphone";
+  // } else if (sensorName.startsWith("cam")) {
+  //   sensorType = "camera"
+  // }
   
   // find closest named area / room
   const dists = [];
@@ -143,7 +150,16 @@ function makeObsLLM(obsttl, sensorkg, map, gptVersion) {
     const sensor = obsStore.any(ob, SOSA('madeBySensor'), undefined);
     const sig_shortname = camelCaseToWords(getName(sig.uri));
     const sensor_shortname = getName(sensor.uri);
-    obstext.push(`${sensor_shortname} detected a ${sig_shortname}. `);
+
+    // hack for mic and cams
+    var action = "observed";
+    if (sensor_shortname.startsWith("mic")) {
+      action = "detected the sound of";
+    } else if (sensor_shortname.startsWith("cam")) {
+      action = "detected a";
+    }
+    
+    obstext.push(`${sensor_shortname} ${action} ${sig_shortname}. `);
   }
 
   for (const o of obstext) {
@@ -151,7 +167,7 @@ function makeObsLLM(obsttl, sensorkg, map, gptVersion) {
   }
   
   //prompt += "What is the most likely cause? Answer step by step";
-  prompt += "What is the level of threat? Answer step by step. Then respond 'green' if not a threat, 'orange' if low/medium threat, 'red' if high threat, or 'grey' if uncertain.";
+  prompt += "What is the level of threat? Answer step by step. Then respond 'green' if not a threat, 'orange' if low/medium threat, or 'red' if high threat.";
   
   console.log(prompt);
   
